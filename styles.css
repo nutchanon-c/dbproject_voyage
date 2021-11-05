@@ -1,0 +1,140 @@
+.headbar{
+    background-color: #fbfbfb;
+    width: 100%;
+    vertical-align: middle;
+    border-bottom: 1px solid grey;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    display: inline-block;
+}
+.headbar > img{
+    text-align: left;
+    vertical-align: middle;
+}
+
+.headbar #signin_button{
+    /* float: right; */
+    background-color: #459E8D;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.headbar button{
+    margin: 3em;
+    position: relative;
+    vertical-align: middle;
+    float: right;
+}
+body{
+    /* padding-top: 10%; */
+    background-image: url("./assets/bg.png");
+    /* width: 100%; */
+    background-repeat: no-repeat;
+    background-size: contain;
+    /* background-position: center; */
+    /* width: ; */
+    /* border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px; */
+    /* background-color: green; */
+}
+.searchbox-holder{
+    background-color: #f1f3f2;
+    /* width: 90%; */
+    height: 30%;
+    align-items: center;
+    text-align: center;
+    margin-top: 20%;
+    border-radius: 25px;
+    margin-left: 10%;
+    margin-right: 10%;
+    border: 1px solid black;
+    vertical-align: middle;
+}
+.searchthing{
+    vertical-align: middle;
+}
+
+.searchthing select{
+    width: 20em;
+    height: 3em;
+    border-radius: 10px;
+    margin: 2em;
+    text-align: left;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: #e4e4e4;
+}
+
+.recommended-holder{
+    margin-top: 5em;
+    margin-left: 3em;
+}
+
+#city_select{
+    background: url('./assets/globe_icon.png') left center no-repeat; 
+    padding-left: 2.5em;
+}
+
+#country_select{
+    background: url('./assets/city_icon.png') left center no-repeat;
+    padding-left: 2.5em;
+}
+
+#country_label{
+    color: #343B53;
+    margin: 0 0.75rem;
+    pointer-events: none;
+    position: absolute;
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+    white-space: nowrap;
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
+#city_label{
+    color: #343B53;
+    margin: 0 0.75rem;
+    pointer-events: none;
+    position: absolute;
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+    white-space: nowrap;
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
+
+#recommended_places_table img{
+    width: 123px;
+    height: 123px;
+    border-radius: 90px;
+    object-fit: cover;
+
+}
+
+#recommended_places_table td{
+    text-align: center;
+    padding-left: 5em;
+    padding-right: 5em;
+    padding-bottom: 1em;
+    margin: 50%;
+
+}
+
+#recommended-places-names{
+    font-weight: bold;
+}
+
+.placeholder{
+    height: 5em;
+}
+
