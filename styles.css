@@ -242,7 +242,7 @@ body{
 }
 
 #city_select{
-    background: url('./assets/globe_icon.png') left center no-repeat; 
+    background: url('./assets/city_icon.png') left center no-repeat; 
     padding-left: 2.5em;
 }
 
