@@ -67,6 +67,38 @@ div{
         cursor: pointer;
 }
 
+
+.form_container{
+    width: 30em;
+    height: 30em;
+    background-color: #fbfbfb;
+    border-radius: 25px;
+    margin: auto;
+    margin-top: 5em;
+    padding: 2em;
+    display: inline-block;
+}
+
+.form_container input{
+    margin: 0.5em;
+    height: 2em;
+    width: 20em;
+}
+
+.form_container input[name="submit"]{
+        background-color: #459E8D;
+        border: none;
+        color: white;
+        width: 10em;
+        /* padding: 15px 30px; */
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 15px;
+        cursor: pointer;
+}
+
 body{
     /* padding-top: 10%; */
     /* background-image: url("./assets/bg.png"); */
