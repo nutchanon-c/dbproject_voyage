@@ -14,10 +14,27 @@
 </style>
 </head>
 <body>
+    <?php session_start(); //Start the session to use the value kept in the ?>
     <div class="container">
         <div class="headbar">
-                <a href="home.php"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>
-                <span><button type="submit" id="signin_button" onClick='document.location.href="login.php"'>Sign in</button></span>      
+            <?php
+                if(isset($_GET['signin'])){
+                    echo '<a href="home.php?signin=69"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>';
+                }
+                else{
+                    echo '<a href="home.php"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>';
+                }
+                ?>
+                <span>
+                    <?php
+                    if(isset($_GET['signin'])){
+                        echo '<button type="submit" id="signin_button">'.$_SESSION['FirstName'].'</button>';
+                    }
+                    else{
+                        echo '<button type="submit" id="signin_button" onClick=document.location.href="login.php">Sign in</button>';
+                    }
+                    ?>
+                </span>      
         </div> 
     
        

@@ -29,7 +29,7 @@
 <!-- create registration form with username, password, email, first name, last name, date of birth, address, tel -->
 <div class="container" style="text-align: center;">
     <div class="form_container">
-        <form action="register.php" method="post">
+        <form action="adduser.php" method="post">
             <div class="form_title">
                 <h1>Register</h1>
             </div>
@@ -62,7 +62,7 @@
             </div>
         </form>
     </div>
-    
+ 
 
 
 </body>

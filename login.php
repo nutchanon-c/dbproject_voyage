@@ -29,12 +29,17 @@
     <!-- 2 textbox to fill out username and password with sign in and register button -->
     <div class="container" style="background-color: white; border-radius: 15px; padding: 5em; margin: 2em; margin-top: 5em; text-align:center;">
         <div class="login_form">
-            <form action="login.php" method="post">
+            <form action="login_check.php" method="post">
                 <h1>Sign in</h1>
                 <input type="text" name="username" placeholder="Username" required>
                 <br>
                 <input type="password" name="password" placeholder="Password" required>
                 <br>
+                <?php
+                    if(isset($_GET['signin'])){
+                        echo "<h4>Incorrect Username or Password</h4>";
+                    }
+                ?>
                 <button type="submit" name="login">Sign in</button>
                 <p>Not a member? <a href="register.php">Register</a></p>
             </form>
