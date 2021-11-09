@@ -22,6 +22,12 @@
     
        
     </div>
+
+    <div class="background_image" style="position: absolute; width: 100%">
+
+    <img src="./assets/bg.png">
+
+    </div>
     <div class="searchbox-holder">
         <div class="searchthing">
             <span>
@@ -48,7 +54,7 @@
         </div> 
     </div>
 <div class="recommended-holder">
-    <h3 style="font-size: 24px">Recommended Places</h3>
+    <h3 style="font-size: 24px;">Recommended Places</h3>
 
     <table id="recommended_places_table">
         <tr>

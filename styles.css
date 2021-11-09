@@ -12,6 +12,7 @@
     vertical-align: middle;
 }
 
+
 .headbar #signin_button{
     /* float: right; */
     background-color: #459E8D;
@@ -33,17 +34,56 @@
     vertical-align: middle;
     float: right;
 }
+
+div{
+    position: relative;
+}
+.background_image img{
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    /* position: absolute; */
+    
+    
+}
+
+.login_form input{
+    margin: 0.5em;
+    height: 3em;
+    width: 20em;
+}
+
+.login_form button{
+        /* float: right; */
+        background-color: #459E8D;
+        border: none;
+        color: white;
+        padding: 15px 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 10px;
+        cursor: pointer;
+}
+
 body{
     /* padding-top: 10%; */
-    background-image: url("./assets/bg.png");
+    /* background-image: url("./assets/bg.png"); */
     /* width: 100%; */
-    background-repeat: no-repeat;
-    background-size: contain;
+    /* background-size: cover; */
+    /* background-repeat: no-repeat;
+    background-size: contain; */
     /* background-position: center; */
     /* width: ; */
     /* border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px; */
     /* background-color: green; */
+    /* make background image to fill horizontally and NOT stretch vertically */
+    /* background-size: cover; */
+    /* background-repeat: no-repeat;  */
+    /* background-size: contain; */
+     /* background-position: center; */
 }
 .searchbox-holder{
     background-color: #f1f3f2;
@@ -74,7 +114,7 @@ body{
 }
 
 .recommended-holder{
-    margin-top: 5em;
+    margin-top: 10em;
     margin-left: 3em;
 }
 
@@ -135,6 +175,6 @@ body{
 }
 
 .placeholder{
-    height: 5em;
+    height: 10em;
 }
 
