@@ -85,6 +85,97 @@ div{
     width: 20em;
 }
 
+.card_form_container{
+    width: 30em;
+    height: 30em;
+    background-color: #fbfbfb;
+    border-radius: 25px;
+    margin: auto;
+    margin-top: 5em;
+    padding: 2em;
+    display: inline-block;
+    text-align: center;
+}
+
+.card_form_container input{
+    margin: 0.5em;
+    height: 2em;
+    width: 20em;
+}
+
+.reservation_details{
+    text-align: center;
+    width: 100%;
+    height: 30em;
+    background-color: #fbfbfb;
+    border-radius: 25px;
+    margin: auto;
+    margin-top: 5em;
+    padding: 2em;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.reservation_details input{
+    margin: 1em;
+    height: 2em;
+    width: 20em;
+    border-radius: 5px;
+    border: 1px solid grey;
+    background-color: #c4c4c4;
+}
+
+.reservation_details button{
+    background-color: #459E8D;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.summary{
+    text-align: center;
+    width: 100%;
+    height: 30em;
+    background-color: #fbfbfb;
+    border-radius: 25px;
+    margin: auto;
+    margin-top: 5em;
+    padding: 2em;
+    display: inline-block;
+    font-weight: bold;
+}
+
+
+.payment_method{
+    text-align: center;
+    border-radius: 25px;
+    margin: auto;
+    margin-top: 5em;
+    padding: 2em;
+    display: block;
+    font-weight: bold;
+}
+
+.summary input[name="confirm"]{
+    background-color: #459E8D;
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
 .form_container input[name="submit"]{
         background-color: #459E8D;
         border: none;

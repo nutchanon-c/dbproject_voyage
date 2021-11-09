@@ -55,55 +55,8 @@
             </form>  
         </div> 
     </div>
-<div class="recommended-holder">
-    <h3 style="font-size: 24px;">Recommended Places</h3>
 
-    <table id="recommended_places_table">
-        <tr>
-            <td>
-                <img src="./assets/bkk.png">
-            </td>
-            <td>
-                <img src="./assets/london.png">
-            </td>
-            <td>
-                <img src="./assets/chicago.png">
-            </td>
-            <td>
-                <img src="./assets/la.png">
-            </td>
-            <td>
-                <img src="./assets/tokyo.png">
-            </td>
-            <td>
-                <img src="./assets/osaka.png">
-            </td>
-        </tr>
-        <tr id="recommended-places-names">
-            <td>
-                Bangkok, Thailand
-            </td>
-            <td>
-                London, UK
-            </td>
-            <td>
-                Chicago, USA
-            </td>
-            <td>
-                Los Angeles, USA
-            </td>
-            <td>
-                Tokyo, Japan
-            </td>
-            <td>
-                Osaka, Japan
-            </td>
-        </tr>
-    </table>
 
-    <div class="placeholder">
-
-    </div>
 </div>
 </body>
 
