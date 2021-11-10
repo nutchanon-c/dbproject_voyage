@@ -129,8 +129,12 @@
                 if(isset($_POST['city'])){
                     $_SESSION['city'] = $_POST['city'];
                     // create button that submits the value of country and city to hotel_list.php and signin=69
+                    if(isset($_GET['signin'])){
                     echo '<a href="hotel_list.php?signin=69&country='.$_SESSION['country'].'&city='.$_SESSION['city'].'"><img src="./assets/search_icon.png" style="background-color: #459E8D; border-radius: 7px; padding: 1em; vertical-align:middle; width: 2em; height: 2em; cursor: pointer;"></a>';
-                    
+                    }
+                    else{
+                        echo '<a href="hotel_list.php?country='.$_SESSION['country'].'&city='.$_SESSION['city'].'"><img src="./assets/search_icon.png" style="background-color: #459E8D; border-radius: 7px; padding: 1em; vertical-align:middle; width: 2em; height: 2em; cursor: pointer;"></a>';
+                    }
 
                     // echo '<a href="hotel_list.php?country='.$_SESSION['country'].'&city='.$_SESSION['city'].'"><img src="./assets/search_icon.png" style="background-color: #459E8D; border-radius: 7px; padding: 1em; vertical-align:middle; width: 2em; height: 2em; cursor: pointer;"></a>';
                 }

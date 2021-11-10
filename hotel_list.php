@@ -133,14 +133,27 @@
                 $country = $_GET['country'];
                 $city = $_GET['city'];
                 //Query
-                $q = "SELECT HotelName, FullAddress FROM hotel WHERE City = $city AND Country = $country;";
-                $result = $mysqli->query($q);
-                echo "<h2>".$result['HotelName']."</h2>";
-                echo $result['FullAddress'];
+                $q = "SELECT Hotel_ID, HotelName, FullAddress FROM hotel WHERE City = '$city' AND Country = '$country';";
+                if($result = $mysqli->query($q)){
+                    echo $country;
+                    echo $city;
+                    while($row = $result->fetch_array()){
+                        echo "<h2>".$row['HotelName']."</h2>";
+                        echo $row['FullAddress'];
+                        if(isset($_GET['signin'])){
+                        // echo '<input type="submit" class="button" name="view_hotel_info" onClick=document.location.href="hotel_info.php?signin=69&hotel_id="'.$row['Hotel_ID'].' value="View"/>';
+                        echo '<button type="submit" id="view_hotel_info" onClick=document.location.href="hotel_info.php?signin=69&hotel_id='.$row['Hotel_ID'].'">View</button>';
+                        }
+                        else{
+                            echo '<button type="submit" id="view_hotel_info" onClick=document.location.href="hotel_info.php?hotel_id='.$row['Hotel_ID'].'">View</button>';
+                        }
+                    }
+                }
+                
             ?>           
         </div>
         <div><!--This is the book now button section-->
-            <button onclick="">Book Now!!!</button>
+            
         </div>
         
     </div>
