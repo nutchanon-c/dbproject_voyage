@@ -1,4 +1,4 @@
-.headbar{
+.headbar {
     background-color: #fbfbfb;
     width: 100%;
     vertical-align: middle;
@@ -7,13 +7,13 @@
     border-bottom-right-radius: 25px;
     display: inline-block;
 }
-.headbar > img{
+
+.headbar>img {
     text-align: left;
     vertical-align: middle;
 }
 
-
-.headbar #signin_button{
+.headbar #signin_button {
     /* float: right; */
     background-color: #459E8D;
     border: none;
@@ -27,7 +27,7 @@
     cursor: pointer;
 }
 
-.profile_name{
+.profile_name {
     /* font-size: 20px; */
     font-weight: bold;
     text-align: center;
@@ -37,107 +37,36 @@
     /* margin: auto; */
     margin-top: 1em;
     padding: 1em;
-    
-    }
+}
 
-.headbar button{
+.hotel_list_div {
+    width: 100%;
+    display: inline-block;
+    margin-top: 5em;
+    margin-bottom: 1em;
+    margin-left: 5em;
+}
+
+.hotel_list_item {
+    width: 100%;
+    display: inline-block;
+    margin-top: 1em;
+    margin-bottom: 5em;
+    margin-left: 5em;
+}
+
+.hotel_list_item button {
+    margin-left: 1em;
+}
+
+.headbar button {
     margin: 3em;
     position: relative;
     vertical-align: middle;
     float: right;
 }
 
-div{
-    position: relative;
-}
-.background_image img{
-    width: 100%;
-    height: 100%;
-    border-radius: 25px;
-    /* position: absolute; */
-    
-    
-}
-
-.login_form input{
-    margin: 0.5em;
-    height: 3em;
-    width: 20em;
-}
-
-.login_form button{
-        /* float: right; */
-        background-color: #459E8D;
-        border: none;
-        color: white;
-        padding: 15px 30px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        border-radius: 10px;
-        cursor: pointer;
-}
-
-
-.form_container{
-    width: 30em;
-    height: 30em;
-    background-color: #fbfbfb;
-    border-radius: 25px;
-    margin: auto;
-    margin-top: 5em;
-    padding: 2em;
-    display: inline-block;
-}
-
-.form_container input{
-    margin: 0.5em;
-    height: 2em;
-    width: 20em;
-}
-
-.card_form_container{
-    width: 30em;
-    height: 30em;
-    background-color: #fbfbfb;
-    border-radius: 25px;
-    margin: auto;
-    margin-top: 5em;
-    padding: 2em;
-    display: inline-block;
-    text-align: center;
-}
-
-.card_form_container input{
-    margin: 0.5em;
-    height: 2em;
-    width: 20em;
-}
-
-.reservation_details{
-    text-align: center;
-    width: 100%;
-    height: 30em;
-    background-color: #fbfbfb;
-    border-radius: 25px;
-    margin: auto;
-    margin-top: 5em;
-    padding: 2em;
-    display: inline-block;
-    font-weight: bold;
-}
-
-.reservation_details input{
-    margin: 1em;
-    height: 2em;
-    width: 20em;
-    border-radius: 5px;
-    border: 1px solid grey;
-    background-color: #c4c4c4;
-}
-
-.reservation_details button{
+#view_hotel_info_button {
     background-color: #459E8D;
     border: none;
     color: white;
@@ -150,7 +79,73 @@ div{
     cursor: pointer;
 }
 
-.summary{
+div {
+    position: relative;
+}
+
+.background_image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    /* position: absolute; */
+}
+
+.login_form input {
+    margin: 0.5em;
+    height: 3em;
+    width: 20em;
+}
+
+.login_form button {
+    /* float: right; */
+    background-color: #459E8D;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.form_container {
+    width: 30em;
+    height: 30em;
+    background-color: #fbfbfb;
+    border-radius: 25px;
+    margin: auto;
+    margin-top: 5em;
+    padding: 2em;
+    display: inline-block;
+}
+
+.form_container input {
+    margin: 0.5em;
+    height: 2em;
+    width: 20em;
+}
+
+.card_form_container {
+    width: 30em;
+    height: 30em;
+    background-color: #fbfbfb;
+    border-radius: 25px;
+    margin: auto;
+    margin-top: 5em;
+    padding: 2em;
+    display: inline-block;
+    text-align: center;
+}
+
+.card_form_container input {
+    margin: 0.5em;
+    height: 2em;
+    width: 20em;
+}
+
+.reservation_details {
     text-align: center;
     width: 100%;
     height: 30em;
@@ -163,8 +158,42 @@ div{
     font-weight: bold;
 }
 
+.reservation_details input {
+    margin: 1em;
+    height: 2em;
+    width: 20em;
+    border-radius: 5px;
+    border: 1px solid grey;
+    background-color: #c4c4c4;
+}
 
-.payment_method{
+.reservation_details button {
+    background-color: #459E8D;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.summary {
+    text-align: center;
+    width: 100%;
+    height: 30em;
+    background-color: #fbfbfb;
+    border-radius: 25px;
+    margin: auto;
+    margin-top: 5em;
+    padding: 2em;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.payment_method {
     text-align: center;
     border-radius: 25px;
     margin: auto;
@@ -174,7 +203,7 @@ div{
     font-weight: bold;
 }
 
-.summary input[name="confirm"]{
+.summary input[name="confirm"] {
     background-color: #459E8D;
     border: none;
     color: white;
@@ -187,22 +216,21 @@ div{
     cursor: pointer;
 }
 
-
-.form_container input[name="submit"]{
-        background-color: #459E8D;
-        border: none;
-        color: white;
-        width: 10em;
-        /* padding: 15px 30px; */
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        border-radius: 15px;
-        cursor: pointer;
+.form_container input[name="submit"] {
+    background-color: #459E8D;
+    border: none;
+    color: white;
+    width: 10em;
+    /* padding: 15px 30px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 15px;
+    cursor: pointer;
 }
 
-body{
+body {
     /* padding-top: 10%; */
     /* background-image: url("./assets/bg.png"); */
     /* width: 100%; */
@@ -218,9 +246,10 @@ body{
     /* background-size: cover; */
     /* background-repeat: no-repeat;  */
     /* background-size: contain; */
-     /* background-position: center; */
+    /* background-position: center; */
 }
-.searchbox-holder{
+
+.searchbox-holder {
     background-color: #f1f3f2;
     /* width: 90%; */
     height: 30%;
@@ -233,11 +262,12 @@ body{
     border: 1px solid black;
     vertical-align: middle;
 }
-.searchthing{
+
+.searchthing {
     vertical-align: middle;
 }
 
-.searchthing select{
+.searchthing select {
     width: 20em;
     height: 3em;
     border-radius: 10px;
@@ -248,22 +278,22 @@ body{
     background-color: #e4e4e4;
 }
 
-.recommended-holder{
+.recommended-holder {
     margin-top: 10em;
     margin-left: 3em;
 }
 
-#city_select{
-    background: url('./assets/city_icon.png') left center no-repeat; 
+#city_select {
+    background: url('./assets/city_icon.png') left center no-repeat;
     padding-left: 2.5em;
 }
 
-#country_select{
-    background: url('./assets/globe_icon.png') left center no-repeat;     
+#country_select {
+    background: url('./assets/globe_icon.png') left center no-repeat;
     padding-left: 2.5em;
 }
 
-#country_label{
+#country_label {
     color: #343B53;
     margin: 0 0.75rem;
     pointer-events: none;
@@ -275,7 +305,7 @@ body{
     font-weight: 400;
 }
 
-#city_label{
+#city_label {
     color: #343B53;
     margin: 0 0.75rem;
     pointer-events: none;
@@ -287,29 +317,25 @@ body{
     font-weight: 400;
 }
 
-
-#recommended_places_table img{
+#recommended_places_table img {
     width: 123px;
     height: 123px;
     border-radius: 90px;
     object-fit: cover;
-
 }
 
-#recommended_places_table td{
+#recommended_places_table td {
     text-align: center;
     padding-left: 5em;
     padding-right: 5em;
     padding-bottom: 1em;
     margin: 50%;
-
 }
 
-#recommended-places-names{
+#recommended-places-names {
     font-weight: bold;
 }
 
-.placeholder{
+.placeholder {
     height: 10em;
 }
-
