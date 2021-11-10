@@ -14,6 +14,7 @@
 </style>
 </head>
 <body>
+    <?php session_start();?>
 <div class="container">
         <div class="headbar">
                 <a href="home.php"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>
@@ -53,14 +54,59 @@
             <input type="number" name="guest_number" id="guest_number" min="1" max="10" required>
         </div>
         <!-- add input for number of rooms -->
-        <div class="form_group">
+
+        <?php
+        require_once('connect.php');
+        $d = "SELECT COUNT(*) AS num FROM room WHERE room.Hotel_ID = ".$_GET['HotelID']." AND room.Room_Type = '".$_GET['RoomType']."' AND room.status = 0 AND room.bedType_ID = ".$_GET['BedTypeID'].' ;';
+
+        if($inner = $mysqli->query($d)){
+            // $temp=0;
+            while($row2 = $inner->fetch_array() /* and $temp<100 */){
+                // echo "<option value=".$row['num']."></option>";
+                // $temp++;
+                // echo $row2['num'];
+                // if (isset($_GET['signin'])){
+                //     echo '<form action="addtionalService.php?signin=69" method="POST">';
+                // }
+                // else{
+                //     echo '<form action="addtionalService.php">';
+                // }
+                
+                // echo "<select name = ".$row['Room_Type'].">";
+                // for($i = 1; $i <= intval($row2['num']); $i++){
+                //     echo "<option value=".$i.">".$i."</option>";
+                //     echo $i;
+                // }
+                // echo "</select>";
+                //  echo "<button type='submit'name=".$row['Room_Type']."value=".$row['Room_Type']." >Book Now</button>";
+                // echo "</form>";
+                echo '<div class="form_group">';
+            echo '<label for="room_number">Number of Rooms</label>';
+            echo '<input type="number" name="room_number" id="room_number" min="1" max="'.$row2['num'].'" required>';
+            echo '</div>';
+            }
+        }
+        else{
+                echo "query failed:".$mysqli->error;
+            }
+        ?>
+
+
+        <!-- <div class="form_group">
             <label for="room_number">Number of Rooms</label>
             <input type="number" name="room_number" id="room_number" min="1" max="10" required>
-    </div>
+    </div> -->
         <button type="submit" name="submit">Reserve</button>
     </div>
 
+        <?php 
+        
+            require_once('connect.php');
 
+            $uid = $_SESSION['User_ID'];
+            $hotel = $_SESSION['Hotel_ID'];
+
+        ?>
     
 
 

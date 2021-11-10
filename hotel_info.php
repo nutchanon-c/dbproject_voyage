@@ -33,22 +33,82 @@
             session_start();
             //Pass the value of the hotelID
             $hotelID = $_GET['hotel_id'];
+            $_SESSION['Hotel_ID']= $hotelID;
             //Query command
             $q = "SELECT * FROM room, bedtype WHERE Hotel_ID = '$hotelID' AND room.BedType_ID = bedtype.BedType_ID";
+            
+            // get amount of free rooms to display in dropdown
+            $d = "SELECT COUNT(*) FROM room WHERE room.Hotel_ID = '$hotelID' AND room.BedType_ID = bedtype.BedType_ID AND room.status = 0" ;
+
+            // echo '<select>';
+            // for($i = 0; $i <= 55; $i++){
+               
+            //     echo "<option value=".$i.">".$i."</option>";
+            //     // echo $i;
+
+            // }
+            // echo '</select>';
+
+            // after selection:
+            // 1. query list of room_id with same room_type and hotel_id and status = 0 to get list of room_id that are free ADD LIMIT TO AMOUNT OF SELECTED
+            // 2. update those status of room_id to 1 WHEN DOING TRANSACTION FROM TRANSACTION PAGE
+
             //Execute the query
             if($result = $mysqli->query($q)){
                 //While loop for displaying information
                 while($row = $result->fetch_array()){
                     echo '<div>'; //The most outer container of the box of information (Vertical box)
                         echo '<h2>'.$row['Room_Type'].'</h2>';
-                        echo '<list>';//Start of the list contain information
+                        echo '<list></list>';//Start of the list contain information
                             echo '<ul>';//Unordered list
                                 echo '<li>'.$row['Size'].' Person</li>';
                                 echo '<li>'.$row['BedAmt']." ".$row['BedType']." beds</li>";
                             echo '</ul>';
                         echo '</list>';
                         echo '<p>'.$row['Room_Desc'].'</p>';
-                        echo '<h2>'.$row["Price"].'</h2>';
+                        echo '<h2>'.$row["Price"].' Baht/Night</h2>';
+                    //Drop down list for #room avaliable
+                    $d = "SELECT COUNT(*) AS num FROM room WHERE room.Hotel_ID = '$hotelID' AND room.Room_Type = '".$row['Room_Type']."' AND room.status = 0 AND room.bedType_ID = ".$row['BedType_ID'].' ;';
+                    
+                    
+                    
+                        if($inner = $mysqli->query($d)){
+                            // $temp=0;
+                            while($row2 = $inner->fetch_array() /* and $temp<100 */){
+                                // echo "<option value=".$row['num']."></option>";
+                                // $temp++;
+                                // echo $row2['num'];
+                                if (isset($_GET['signin'])){
+                                    echo '<form action="reservation_req.php?signin=69" method="GET">';
+                                }
+                                else{
+                                    echo '<form action="login.php">';
+                                }
+                                
+                                // echo "<select name = ".$row['Room_Type'].">";
+                                // for($i = 1; $i <= intval($row2['num']); $i++){
+                                //     echo "<option value=".$i.">".$i."</option>";
+                                //     echo $i;
+                                // }
+                                // echo "</select>";
+                                echo '
+                                <input type="hidden" name="RoomType" value="'.$row['Room_Type'].'"/>
+                                <input type="hidden" name="BedTypeID" value="'.$row['BedType_ID'].'"/>
+                                <input type="hidden" name="HotelID" value="'.$row['Hotel_ID'].'"/>';
+                                
+                                if (isset($_GET['signin'])){
+                                    echo '<input type="hidden" name="User_ID" value="'.$_SESSION['User_ID'].'"/>';
+                                }
+
+                                echo '<button name ="submit" value="1" type="submit">Book Now</button>';
+                                echo "</form>";
+                            }
+                        }
+                        else{
+                                echo "query failed:".$mysqli->error;
+                            }
+                    
+
                     echo '</div>';//Close tag of the most outer container
                 }
             }
