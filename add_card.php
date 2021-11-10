@@ -61,6 +61,52 @@
         </form>
     </div>
     </div>
+
+    <?php 
+        require_once('connect.php');
+        session_start();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            //Fetch all the value
+            $fname = $_POST['first_name'];
+            $lname = $_POST['last_name'];
+            $ad = $_POST['address'];
+            $zip = $_POST['zip_code'];
+            $cn = $_POST['card_number'];
+            $ed = $_POST['expiration_date'];
+            //Extract the first string
+            $firstDigit = $cn[0];
+            if($firstDigit == '3'){
+            $cardType = 'American Express';
+            }
+            elseif($firstDigit == '4'){
+            $cardType = 'Visa';
+            }
+            elseif($firstDigit == '5'){
+            $cardType = 'MasterCard';
+            }
+            elseif($firstDigit == '6'){
+            $cardType = 'Discover';
+            }
+            else{
+            $cardType = 'Random';
+            }
+
+
+
+            $lastFour = $cn[-4].$cn[-3].$cn[-2].$cn[-1];
+
+
+            //Query command
+            $q = "INSERT INTO cardinfo values ('', '$fname', '$lname', '$ad', '$zip', '$cn', '$ed','$cardType', '$lastFour');";
+            //Execute
+            if($result=$mysqli->query($q)){
+                header("Location: home.php?signin=69");
+            }
+            else{
+                echo "query failed:".$mysqli->error;
+            }
+        }
+    ?>
     
 
 
