@@ -65,6 +65,8 @@
     <?php 
         require_once('connect.php');
         session_start();
+        $uid = $_SESSION['User_ID'];
+        echo $uid;
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //Fetch all the value
             $fname = $_POST['first_name'];
@@ -95,16 +97,46 @@
 
             $lastFour = $cn[-4].$cn[-3].$cn[-2].$cn[-1];
 
+            $card = "SELECT Last4 FROM cardinfo WHERE user_id=".$uid;
+
+                if($result2 = $mysqli->query($card)){
+                    $row2 = $result2->fetch_array();
+                    if(empty($row2)){
+                        $qi = "INSERT INTO cardinfo values ('','$uid', '$fname', '$lname', '$ad', '$zip', '$cn', '$ed','$cardType', '$lastFour');";
+                        //Execute
+                        if($result=$mysqli->query($qi)){
+                            header("Location: profile.php?signin=69");
+                        }
+                        else{
+                            echo "query failed:".$mysqli->error;
+                        }
+                    }
+                    else{
+                        //Update the existing card
+                        $qu = "UPDATE cardinfo SET FirstName ='$fname', LastName = '$lname', Address = '$ad', ZipCode = '$zip',CardNumber = '$cn', AuthExpDate = '$ed', CardType = '$cardType', Last4 = '$lastFour' WHERE User_ID = '$uid';";
+                        //Execute
+                        if($result=$mysqli->query($qu)){
+                            header("Location: profile.php?signin=69");
+                        }
+                        else{
+                            echo "query failed:".$mysqli->error;
+                    }
+                    
+                }
+            }
+                else{
+                    echo 'Query Error';
+                }
 
             //Query command
-            $q = "INSERT INTO cardinfo values ('', '$fname', '$lname', '$ad', '$zip', '$cn', '$ed','$cardType', '$lastFour');";
+            /* $q = "INSERT INTO cardinfo values ('','$uid', '$fname', '$lname', '$ad', '$zip', '$cn', '$ed','$cardType', '$lastFour');";
             //Execute
             if($result=$mysqli->query($q)){
-                header("Location: home.php?signin=69");
+                header("Location: profile.php?signin=69");
             }
             else{
                 echo "query failed:".$mysqli->error;
-            }
+            } */
         }
     ?>
     
