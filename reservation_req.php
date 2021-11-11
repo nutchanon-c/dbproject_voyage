@@ -96,7 +96,9 @@
             <label for="room_number">Number of Rooms</label>
             <input type="number" name="room_number" id="room_number" min="1" max="10" required>
     </div> -->
-        <button type="submit" name="submit">Reserve</button>
+            
+    <!-- goes to ADDITIONALSERVICE.PHP -->
+        <button type="submit" name="submit">Next</button> 
     </div>
 
         <?php 
