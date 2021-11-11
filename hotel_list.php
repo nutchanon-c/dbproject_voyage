@@ -45,6 +45,17 @@
         .hotel_list_item button {
             margin-left: 1em;
         }
+
+        .hotel_list_item img {
+            /* put to the left */
+            float: left;
+            width: 20em;
+            /* height: 1em; */
+            margin-right: 1em;
+            border-radius: 15px;
+            margin-right: 5em;
+            border: 1px solid #ddd;
+        }
     </style>
 </head>
 
@@ -87,63 +98,91 @@
                 <span id="containerforlabel">
                     <?php
 
-                    if (isset($_GET['signin'])) {
-                        echo '<form name="search_form" action="home.php?signin=69" method="POST">';
-                    } else {
-                        echo '<form name="search_form" action="home.php" method="POST">';
+                    if(isset($_GET['country'])){
+                        $_SESSION['country'] = $_GET['country'];
+                    }
+                    if(isset($_GET['city'])){
+                        $_SESSION['city'] = $_GET['city'];
+                    }
+
+                    if(isset($_GET['signin'])){
+                        echo '<form name="search_form" action="hotel_list.php?signin=69" method="GET">';
+                    }
+                    else{
+                        echo '<form name="search_form" action="hotel_list.php" method="GET">';
                     }
                     ?>
-
-                    <label for="country_select" id="country_label">country</label>
-                    <select id="country_select" name="country" onchange="this.form.submit();">
-                        <option selected disabled>Select Country</option>
-                        <?php
-                        require_once('connect.php');
-                        $q = 'SELECT DISTINCT country FROM hotel ORDER BY country;';
-                        if ($result = $mysqli->query($q)) {
-                            while ($row = $result->fetch_array()) {
-
-                                if (isset($_POST['country'])) {
-                                    if ($_POST['country'] == $row['country']) {
-                                        echo '<option selected value="' . $row['country'] . '">' . $row['country'] . '</option>';
-                                    } else {
-                                        echo '<option value="' . $row['country'] . '">' . $row['country'] . '</option>';
-                                    }
-                                } else {
-                                    echo '<option value="' . $row['country'] . '">' . $row['country'] . '</option>';
-                                }
+                
+                  <label for="country_select" id="country_label">country</label>
+                  <select id="country_select" name="country" onchange="this.form.submit();">
+                  <option selected disabled>Select Country</option>
+                  <?php
+                  require_once('connect.php');
+                  $q = 'SELECT DISTINCT country FROM hotel ORDER BY country;';
+                  if($result=$mysqli->query($q)){
+                    while($row=$result->fetch_array()){
+                        
+                        if (isset($_GET['country'])){
+                            if($_GET['country']==$row['country']){
+                                echo '<option selected value="'.$row['country'].'">'.$row['country'].'</option>';
+                            }
+                            else{
+                                echo '<option value="'.$row['country'].'">'.$row['country'].'</option>';
                             }
                         }
-                        ?>
-                    </select>
-
-
+                        else{
+                            echo '<option value="'.$row['country'].'">'.$row['country'].'</option>';
+                        }
+                    }
+                }
+                  ?>
+                  </select>
+                 
+                    
                 </span>
                 <span id="containerforlabel">
-                    <label for="city_select" id="city_label">city</label>
+                <label for="city_select" id="city_label">city</label>
 
-                    <?php
-                    if (isset($_POST['country'])) {
-                        $_SESSION['country'] = $_POST['country'];
-                        $q = 'SELECT DISTINCT city FROM hotel WHERE country="' . $_POST['country'] . '" ORDER BY city;';
-                        if ($result = $mysqli->query($q)) {
-                            echo '<select id="city_select" name="city">';
-                            echo '<option selected disabled>Select City</option>';
-                            while ($row = $result->fetch_array()) {
-                                echo '<option value="' . $row['city'] . '">' . $row['city'] . '</option>';
+                <?php
+                if (isset($_GET['country'])){
+                    $_SESSION['country'] = $_GET['country'];
+                    require_once('connect.php');
+                    $q = 'SELECT DISTINCT city FROM hotel WHERE country="'.$_GET['country'].'" ORDER BY city;';
+                    if($result=$mysqli->query($q)){
+                        echo '<select id="city_select" name="city" onchange="this.form.submit();">';
+                        echo '<option selected disabled>Select City</option>';
+                        while($row=$result->fetch_array()){
+                            if (isset($_GET['city'])){
+                                if($_GET['city']==$row['city']){
+                                    echo '<option selected value="'.$row['city'].'">'.$row['city'].'</option>';
+                                }
+                                else{
+                                    echo '<option value="'.$row['city'].'">'.$row['city'].'</option>';
+                                }
                             }
-                            echo '</select>';
+                            else{
+                                echo '<option value="'.$row['city'].'">'.$row['city'].'</option>';
+                            }
                         }
-                    } else {
-                        echo '<select id="city_select" name="city" disabled>';
-                        echo '<option selected disabled>Select Country First</option>';
                         echo '</select>';
                     }
-
+                }
+                else{
+                    echo '<select id="city_select" name="city" disabled>';
+                    echo '<option selected disabled>Select Country First</option>';
+                    echo '</select>';
+                }
                     ?>
 
                 </span>
-                <img src="./assets/search_icon.png" style="background-color: #459E8D; border-radius: 7px; padding: 1em; vertical-align:middle; width: 2em; height: 2em; cursor: pointer;">
+                <?php
+                // if(isset($_GET['signin'])){
+                //     echo '<a href="hotel_list.php?signin=69&country='.$_SESSION['country'].'&city='.$_SESSION['city'].'"><img src="./assets/search_icon.png" style="background-color: #459E8D; border-radius: 7px; padding: 1em; vertical-align:middle; width: 2em; height: 2em; cursor: pointer;"></a>';
+                //     }
+                //     else{
+                //         echo '<a href="hotel_list.php?country='.$_SESSION['country'].'&city='.$_SESSION['city'].'"><img src="./assets/search_icon.png" style="background-color: #459E8D; border-radius: 7px; padding: 1em; vertical-align:middle; width: 2em; height: 2em; cursor: pointer;"></a>';
+                //     }
+                    ?>
                 </form>
         </div>
     </div>
@@ -162,15 +201,18 @@
             <?php
             //Connect database
             require_once('connect.php');
-            $country = $_GET['country'];
-            $city = $_GET['city'];
+            $country = $_SESSION['country'];
+            $city = $_SESSION['city'];
             //Query
-            $q = "SELECT Hotel_ID, HotelName, FullAddress FROM hotel WHERE City = '$city' AND Country = '$country';";
+            $q = "SELECT Hotel_ID, HotelName, FullAddress, Picture FROM hotel WHERE City = '$city' AND Country = '$country';";
             if ($result = $mysqli->query($q)) {
                 // echo $country;
                 // echo $city;
                 while ($row = $result->fetch_array()) {
+                    // add hotel picture on the left
+                    
                     echo '<div class="hotel_list_item">';
+                    echo '<img src="' . $row['Picture'] . '" alt="">';
                     echo "<h2>" . $row['HotelName'] . "</h2>";
                     echo $row['FullAddress'];
                     if (isset($_GET['signin'])) {
@@ -191,6 +233,56 @@
         </div>
 
     </div>
+    <div class="recommended-holder">
+    <h3 style="font-size: 24px;">Recommended Places</h3>
+
+    <table id="recommended_places_table">
+        <tr>
+            <td>
+                <img src="./assets/bkk.png">
+            </td>
+            <td>
+                <img src="./assets/london.png">
+            </td>
+            <td>
+                <img src="./assets/chicago.png">
+            </td>
+            <td>
+                <img src="./assets/la.png">
+            </td>
+            <td>
+                <img src="./assets/tokyo.png">
+            </td>
+            <td>
+                <img src="./assets/osaka.png">
+            </td>
+        </tr>
+        <tr id="recommended-places-names">
+            <td>
+                Bangkok, Thailand
+            </td>
+            <td>
+                London, UK
+            </td>
+            <td>
+                Chicago, USA
+            </td>
+            <td>
+                Los Angeles, USA
+            </td>
+            <td>
+                Tokyo, Japan
+            </td>
+            <td>
+                Osaka, Japan
+            </td>
+        </tr>
+    </table>
+
+    <div class="placeholder">
+
+    </div>
+</div>
 </body>
 
 </html>
