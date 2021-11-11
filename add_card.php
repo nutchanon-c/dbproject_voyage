@@ -75,7 +75,7 @@
             <div class ="form_input">                
             <lable for="expireMM">Expiration date</lable>
             <select name='expireMM' id='expireMM'>
-            <option value=''  disabled>Month</option>
+            <option value=''  selected disabled>Month</option>
             <option value='01'>January</option>
             <option value='02'>February</option>
             <option value='03'>March</option>
@@ -90,7 +90,7 @@
             <option value='12'>December</option>
         </select> 
         <select name='expireYYYY' id='expireYY'>
-            <option value=''  disabled>Year</option>
+            <option value=''  selected disabled>Year</option>
             <option value='2020'>2020</option>
             <option value='2021'>2021</option>
             <option value='2022'>2022</option>
