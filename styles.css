@@ -13,7 +13,7 @@
     vertical-align: middle;
 }
 
-.as_container{
+.as_container {
     text-align: center;
     width: 50vw;
     /* height: 100vh; */
@@ -27,7 +27,7 @@
     padding: 2em;
     /* margin-left: 1em;
     margin-right: 1em; */
-    }
+}
 
 .headbar #signin_button {
     /* float: right; */
@@ -41,6 +41,22 @@
     font-size: 16px;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.hotel_info_container {
+    text-align: center;
+    width: 50vw;
+    /* height: 100vh; */
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    vertical-align: middle;
+    background-color: #fbfbfb;
+    margin-top: 5em;
+    border-radius: 15px;
+    padding: 2em;
+    /* margin-left: 1em;
+    margin-right: 1em; */
 }
 
 .profile_name {
