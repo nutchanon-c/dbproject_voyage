@@ -65,6 +65,22 @@
             //Pass the value of the hotelID
             $hotelID = $_GET['hotel_id'];
             $_SESSION['Hotel_ID']= $hotelID;
+
+            //Query the HotelName and FullAddress from the database
+            $sql = "SELECT HotelName, FullAddress FROM Hotel WHERE Hotel_ID = '$hotelID'";
+            $result = $mysqli->query($sql);
+            $row = $result->fetch_assoc();
+            $hotelName = $row['HotelName'];
+            $fullAddress = $row['FullAddress'];
+
+            // put in div
+            echo '<div class="hotel_info">';
+            echo '<h1>'.$hotelName.'</h1>';
+            echo '<h2>'.$fullAddress.'</h2>';
+            echo '</div>';
+
+
+
             //Query command
             $q = "SELECT * FROM room, bedtype WHERE Hotel_ID = '$hotelID' AND room.BedType_ID = bedtype.BedType_ID";
             
