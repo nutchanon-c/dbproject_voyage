@@ -40,7 +40,7 @@
         <!-- </h2> -->
 
     <!-- reservation form with checkin date, checkout date, and number of guests -->
-    <form action="reservation_req.php" method="POST">
+    <form action="reservation_q.php" method="POST">
         <div class="form_group">
             <label for="checkin_date">Check-in Date</label>
             <input type="date" name="checkin_date" id="checkin_date" required>
@@ -98,8 +98,9 @@
     </div> -->
             
     <!-- goes to ADDITIONALSERVICE.PHP -->
-        <button type="submit" name="submit">Next</button> 
+        <button type="submit" name="submit" onClick=document.location.href="reservation_q.php?signin=69">Next</button>
     </div>
+        </form>
 
         <?php 
         
