@@ -27,11 +27,14 @@
         }
 
         .hotel_list_div {
-            width: 100%;
+            width: 100vh;
             display: inline-block;
             margin-top: 5em;
             margin-bottom: 1em;
-            margin-left: 5em;
+            margin-left: 20em;
+            display: block;
+            justify-content: center;
+            align-items: center;
         }
 
         .hotel_list_item {
@@ -40,6 +43,11 @@
             margin-top: 1em;
             margin-bottom: 5em;
             margin-left: 5em;
+            /* display: block; */
+
+            /* flex-direction: column;
+            justify-content: space-between;
+            align-items: center; */
         }
 
         .hotel_list_item button {
@@ -55,6 +63,10 @@
             border-radius: 15px;
             margin-right: 5em;
             border: 1px solid #ddd;
+        }
+
+        .hotel_list_item div{
+            margin-left: 1em;
         }
     </style>
 </head>
@@ -215,6 +227,7 @@
                     echo '<img src="./assets/hotels/' . $row['Picture'] . '" alt="">';
                     echo "<h2>" . $row['HotelName'] . "</h2>";
                     echo $row['FullAddress'];
+                    echo '<div class="viewButton"';
                     if (isset($_GET['signin'])) {
                         // echo '<input type="submit" class="button" name="view_hotel_info" onClick=document.location.href="hotel_info.php?signin=69&hotel_id="'.$row['Hotel_ID'].' value="View"/>';
                         echo '<button type="submit" id="view_hotel_info_button" onClick=document.location.href="hotel_info.php?signin=69&hotel_id=' . $row['Hotel_ID'] . '">View</button>';
@@ -222,6 +235,8 @@
                         echo '<button type="submit" id="view_hotel_info_button" onClick=document.location.href="hotel_info.php?hotel_id=' . $row['Hotel_ID'] . '">View</button>';
                     }
                     echo '</div>';
+                    echo '</div>';
+                    
                 }
             }
 

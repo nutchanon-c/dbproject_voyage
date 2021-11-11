@@ -166,6 +166,9 @@
         if($result = $mysqli->query($r)){
             while($row = $result->fetch_array()){
                 echo $count.". ".$row['HotelName'].": ".$row['CheckIn_Date']." to ".$row['CheckOut_Date'];
+                echo '<button onClick=document.location.href="reservation_detail.php?reservation_id='.$row['Reservation_ID'].'">Detail</button>';
+                echo '<br>';
+                $count++;
             }
         }
         
