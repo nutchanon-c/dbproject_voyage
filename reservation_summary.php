@@ -29,15 +29,51 @@
         <?php
         session_start();
         require_once('connect.php');
-        $hotel_name = "HOTEL NAME";
-        $hotel_address ="HOTEL ADDRESS";
-        echo "<h1>Reservation Summary: ".$hotel_name."</h1>";
-        echo "<h3>".$hotel_address."</h3>";
+        $totalPrice = 0;
+        $asPrice = 0;
+        $rPrice = 0;
+        // $hotel_name = "HOTEL NAME";
+        // $hotel_address ="HOTEL ADDRESS";
+        // echo $_SESSION['User_ID'];
 
+        // echo "<h1>Reservation Summary: ".$hotel_name."</h1>";
+        // echo "<h3>".$hotel_address."</h3>";
+        // echo $_SESSION['Room_Type'];
         // loop through $_POST[] 1 to 13 and check isset for each one
         // if isset, echo the value
         // if not isset, echo "N/A"
-        echo $_SESSION['Reservation_ID'];
+        // echo $_SESSION['Reservation_ID'];
+        
+        // echo $_SESSION['RoomAmt'];
+        // select * from Hotel, Room, Reservation, Room_Reservation where Hotel.Hotel_ID = Room.Hotel_ID and Room.Room_ID = Room_Reservation.Room_ID and Room_Reservation.Reservation_ID = Reservation.Reservation_ID and Reservation.Reservation_ID = $_SESSION['Reservation_ID'];
+        $reserid = $_SESSION['Reservation_ID'];
+        $sql = "SELECT * FROM Hotel, Room, Reservation, Room_Reservation WHERE Hotel.Hotel_ID = Room.Hotel_ID and Room.Room_ID = Room_Reservation.Room_ID and Room_Reservation.Reservation_ID = Reservation.Reservation_ID and Reservation.Reservation_ID = $reserid;";
+        if($result = $mysqli->query($sql)){
+            if($result->num_rows > 0){
+                while($row = $result->fetch_array()){
+                    $hotel_name = $row['HotelName'];
+                    $hotel_address = $row['FullAddress'];
+                    $room_type = $row['Room_Type'];
+                    $room_price = $row['Price'];
+                    // $room_number = $row['Room_Number'];
+                    $check_in = $row['CheckIn_Date'];
+                    $check_out = $row['CheckOut_Date'];
+                    $guestNo = $row['CustomerAmount'];
+                
+                }
+            }
+        }
+        echo "<h1>Reservation Summary: ".$hotel_name." - ".$room_type."</h1>";
+        echo "<h3>".$hotel_address."</h3>";
+        
+        // make a table to show Check-in Date, Check-out Date, guestNo
+        echo "<table>";
+        echo "<tr><td>Check-in Date: </td><td>".$check_in."</td></tr>";
+        echo "<tr><td>Check-out Date: </td><td>".$check_out."</td></tr>";
+        echo "<tr><td>Guest No: </td><td>".$guestNo."</td></tr>";
+        echo "</table>";
+
+
 
         // get room_id from room_reservation where reservation_id = $_SESSION['Reservation_ID']
         
@@ -70,6 +106,18 @@
         }
     }
 
+        
+
+        // find number of days between check-in and check-out
+        $checkin = strtotime($check_in);
+        $checkout = strtotime($check_out);
+        $datediff = $checkout - $checkin;
+        echo "<p> Price Per Day: ".$room_price." Baht</p>";
+        $rPrice = $room_price * $datediff / (60 * 60 * 24);
+        $totalPrice += $room_price * $datediff / (60 * 60 * 24);
+        
+        echo "<p>Total Room Price: ".$rPrice." Baht</p>";
+        echo '<h2>Additional Services</h2>';
         for ($i = 1; $i <= 13; $i++) {
             // get AS_ID from addional_service table
             $AS_ID = $i;
@@ -78,18 +126,25 @@
             $row = $result->fetch_assoc();
             $AS_name = $row['Type'];            
             if (isset($_POST[$i])) {
-                echo "<p>".$AS_name."</p>";
+                echo "<p>".$AS_name." - ".$row['Price']." Baht</p>";
+                // add price of additional service to total price
+                $totalPrice += $row['Price'];
+                $asPrice += $row['Price'];
             } else {
                 // echo "<p>".$i.": ".$AS_name." - Not Selected</p>";
             }
         }
 
+        echo "<p>Total Additional Service Cost: ".$asPrice." Baht</p>";
+        echo "<h2>Total Price: ".$totalPrice." Baht</h2>";
 
 
         ?>
         
         <!-- create radio buttons to choose between "Credit Card" and "Cash" labeled payment method -->
         <div class="payment_method">
+        <!-- label for payment_method -->
+        <label for="payment_method">Payment Method:</label>
         <form action="reservation_confirmation.php" method="post">
             <input type="radio" name="payment_method" value="credit_card" checked>Credit Card<br>
             <input type="radio" name="payment_method" value="cash">Cash<br>

@@ -14,7 +14,38 @@
 </style>
 </head>
 <body>
+    <?php session_start(); ?>
+<div class="container">
+        <div class="headbar">
+            <?php
+                if(isset($_GET['signin'])){
+                    echo '<a href="home.php?signin=69"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>';
+                }
+                else{
+                    echo '<a href="home.php"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>';
+                }
+                ?>
+                <span>
+                    <?php
+                    if(isset($_GET['signin'])){
+                        echo '<button type="submit" id="signin_button" onClick=document.location.href="profile.php?signin=69&user_id='.$_SESSION['User_ID'].'">'.$_SESSION['FirstName'].'</button>';
+                        // make sign out text
+                        echo '<button type="submit" id="signout_button" onClick=document.location.href="logout.php?signin=69&user_id='.$_SESSION['User_ID'].'">Sign Out</button>';
+                    }
+                    else{
+                        echo '<button type="submit" id="signin_button" onClick=document.location.href="login.php">Sign in</button>';
+                    }
+                    ?>
+                </span>      
+        </div> 
     
+       
+    </div>
+    <div class="background_image" style="position: absolute; width: 100%">
+
+<img src="./assets/bg.png">
+
+</div>
         <!-- 
             Single : room type
             xx Persons : size
@@ -30,7 +61,7 @@
             //Connect to the database via connect.php
             require_once('connect.php');
             //Start the session
-            session_start();
+            // session_start();
             //Pass the value of the hotelID
             $hotelID = $_GET['hotel_id'];
             $_SESSION['Hotel_ID']= $hotelID;

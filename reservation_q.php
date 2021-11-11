@@ -10,6 +10,7 @@
     $co = $_POST['checkout_date'];
     $gn = $_POST['guest_number'];
     $rn = $_POST['room_number'];
+    $_SESSION['RoomAmt'] = $rn;
 
     // $q = "INSERT INTO reservation values ('', '$uid', 0, $gn, '', '$ci', '$co' )";
     $q = "INSERT INTO reservation (user_id, status, customeramount, checkin_date, checkout_date) values('$uid',0,$gn,'$ci','$co');";
@@ -28,10 +29,10 @@
         else{
             echo "query failed:".$mysqli->error;
         }
-        $r = "SELECT Room_ID from ROOM where Status = 0 AND room.hotel_ID = $hotel LIMIT $rn";
+        $r = "SELECT Room_ID, Room_Type from ROOM where Status = 0 AND room.hotel_ID = $hotel LIMIT $rn";
         if($roomArray = $mysqli->query($r)){
             while($row = $roomArray->fetch_assoc()){
-                
+                $_SESSION['Room_Type'] = $row['Room_Type'];
                 $reserID = $_SESSION['Reservation_ID'];
                 // var_dump($reserID);
                 // echo '<br>';
