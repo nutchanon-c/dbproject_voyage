@@ -127,6 +127,7 @@
                                 // echo $row2['num'];
                                 if (isset($_GET['signin'])){
                                     echo '<form action="reservation_req.php?signin=69" method="GET">';
+                                    echo '<input type="hidden" name="signin" value="69"/>';
                                 }
                                 else{
                                     echo '<form action="login.php">';
