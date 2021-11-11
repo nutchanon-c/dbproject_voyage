@@ -15,8 +15,8 @@
 
         .hotel_info_container {
             /* text-align: center; */
-            width: 100vw;
-            /* height: 100vh; */
+            width: 70vw;
+            height: auto;
             display: flex;
             /* align-items: center; */
             /* justify-content: center; */
@@ -25,24 +25,26 @@
             margin-top: 5em;
             border-radius: 15px;
             padding: 2em;
-            /* margin-left: 1em;
-        margin-right: 1em; */
+            margin: 0 auto;
             border-radius: 15px;
         }
 
         .hotel_info_content {
             width: 100%;
             display: flex;
-            flex-direction: column;
+            /* flex-direction: column; */
             align-items: center;
-            /* justify-content: center;
-            text-align: center; */
+            justify-content: center;
+            text-align: center;
+            /* margin-left: 2em; */
         }
-        .hotel_info_content li{
+
+        .hotel_info_content li {
             padding: 0.5em;
 
         }
-        .hotel_info_content p{
+
+        .hotel_info_content p {
             padding: 0.5em;
         }
 
@@ -59,21 +61,29 @@
             cursor: pointer;
         }
 
-        #book_button{
+        #book_button {
             margin-top: 1em;
         }
-        hr{
+
+        hr {
             margin: 2em;
         }
 
-        .hotel_img{
-            width: 100%;
+        .hotel_img {
+            width: 80%;
             height: auto;
             border-radius: 15px;
             border: 1px solid #fbfbfb;
         }
-        
 
+        ul {
+            /* list-style-type: none; */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
     </style>
 </head>
 
@@ -135,10 +145,10 @@
             $row = $result->fetch_assoc();
             $hotelName = $row['HotelName'];
             $fullAddress = $row['FullAddress'];
-            $picture = $row['Picture'];
+            $picture = './assets/hotels/'.$row['Picture'];
             // put in div
             echo '<div class="hotel_info">';
-            echo '<img class="hotel_img" src="' . $row['Picture'] . '" alt="">';
+            echo '<img class="hotel_img" src="' . $picture . '" alt="">';
             echo '<h1>' . $hotelName . '</h1>';
             echo '<h2>' . $fullAddress . '</h2>';
             echo '</div>';
@@ -170,7 +180,7 @@
                 while ($row = $result->fetch_array()) {
                     echo '<div class="hotel_info_list">'; //The most outer container of the box of information (Vertical box)
                     echo '<h2>' . $row['Room_Type'] . '</h2>';
-                    echo '<list></list>'; //Start of the list contain information
+                    echo '<list>'; //Start of the list contain information
                     echo '<ul>'; //Unordered list
                     echo '<li>' . $row['Size'] . ' Persons</li>';
                     echo '<li>' . $row['BedAmt'] . " " . $row['BedType'] . " beds</li>";

@@ -212,7 +212,7 @@
                     // add hotel picture on the left
                     
                     echo '<div class="hotel_list_item">';
-                    echo '<img src="' . $row['Picture'] . '" alt="">';
+                    echo '<img src="./assets/hotels/' . $row['Picture'] . '" alt="">';
                     echo "<h2>" . $row['HotelName'] . "</h2>";
                     echo $row['FullAddress'];
                     if (isset($_GET['signin'])) {
