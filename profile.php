@@ -85,10 +85,10 @@
                 if($result2 = $mysqli->query($card)){
                     $row2 = $result2->fetch_array();
                     if(is_null($row2)){
-                        echo '<div class="profile_name">No credit card registered<span><button onClick=document.location.href="add_card.php" name="acb">Add Card</button></span></div>' ;
+                        echo '<div class="profile_name">No credit card registered<span><button onClick=document.location.href="add_card.php?signin=69" name="acb">Add Card</button></span></div>' ;
                     }
                     else{
-                        echo '<div class="profile_name">************'.$row2['Last4'].'<span><button onClick=document.location.href="add_card.php" name="acb">Change Card</button></span></div>' ;
+                        echo '<div class="profile_name">************'.$row2['Last4'].'<span><button onClick=document.location.href="add_card.php?signin=69" name="acb">Change Card</button></span></div>' ;
                     }
                     
                 }

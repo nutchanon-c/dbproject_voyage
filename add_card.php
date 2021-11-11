@@ -14,11 +14,27 @@
 </style>
 </head>
 <body>
+<?php session_start(); //Start the session to use the value kept in the ?>
     <div class="container">
-        <div class="headbar">
-                <a href="home.php"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>
-                <span><button type="submit" id="signin_button" onClick='document.location.href="login.php"'>Sign in</button></span>      
-        </div>        
+    <div class="headbar">
+            <?php
+            if (isset($_GET['signin'])) {
+                echo '<a href="home.php?signin=69"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>';
+            } else {
+                echo '<a href="home.php"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>';
+            }
+            ?>
+            <span>
+                <?php
+                if (isset($_GET['signin'])) {
+                    echo '<button type="submit" id="signin_button" onClick=document.location.href="profile.php?signin=69&user_id=' . $_SESSION['User_ID'] . '">' . $_SESSION['FirstName'] . '</button>';
+                    // make sign out text
+                    echo '<button type="submit" id="signout_button" onClick=document.location.href="logout.php?signin=69&user_id=' . $_SESSION['User_ID'] . '">Sign Out</button>';
+                } else {
+                    echo '<button type="submit" id="signin_button" onClick=document.location.href="login.php">Sign in</button>';
+                }
+                ?>
+        </div>       
     </div>
 
     <div class="background_image" style="position: absolute; width: 100%">
@@ -49,11 +65,41 @@
             </div>
             <div class="form_input">
                 <label for="card_number">Card number</label>
-                <input type="text" name="card_number" id="card_number" required>
+                <input type="text" name="card_number" id="card_number" minlength="16" maxlength="16" required>
             </div>
-            <div class="form_input">
+            <!-- <div class="form_input">
                 <label for="expiration_date">Expiration date</label>
                 <input type="text" name="expiration_date" id="expiration_date" required>
+            </div> -->
+            
+            <div class ="form_input">                
+            <lable for="expireMM">Expiration date</lable>
+            <select name='expireMM' id='expireMM'>
+            <option value=''  disabled>Month</option>
+            <option value='01'>January</option>
+            <option value='02'>February</option>
+            <option value='03'>March</option>
+            <option value='04'>April</option>
+            <option value='05'>May</option>
+            <option value='06'>June</option>
+            <option value='07'>July</option>
+            <option value='08'>August</option>
+            <option value='09'>September</option>
+            <option value='10'>October</option>
+            <option value='11'>November</option>
+            <option value='12'>December</option>
+        </select> 
+        <select name='expireYYYY' id='expireYY'>
+            <option value=''  disabled>Year</option>
+            <option value='2020'>2020</option>
+            <option value='2021'>2021</option>
+            <option value='2022'>2022</option>
+            <option value='2023'>2023</option>
+            <option value='2024'>2024</option>
+
+        </select> 
+        <input class="inputCard" type="hidden" name="expiry" id="expiry" maxlength="4"/>
+
             </div>
             <div class="form_input">
                 <input type="submit" value="Submit" name="submit">
@@ -64,9 +110,9 @@
 
     <?php 
         require_once('connect.php');
-        session_start();
+        // session_start();
         $uid = $_SESSION['User_ID'];
-        echo $uid;
+        // echo $uid;
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //Fetch all the value
             $fname = $_POST['first_name'];
@@ -74,7 +120,9 @@
             $ad = $_POST['address'];
             $zip = $_POST['zip_code'];
             $cn = $_POST['card_number'];
-            $ed = $_POST['expiration_date'];
+            // $ed = $_POST['expiration_date'];
+            $ed = $_POST['expireYYYY'].'-'.$_POST['expireMM'].'-01';
+            // echo 'console.log('.$ed.')';
             //Extract the first string
             $firstDigit = $cn[0];
             if($firstDigit == '3'){
@@ -106,6 +154,7 @@
                         //Execute
                         if($result=$mysqli->query($qi)){
                             header("Location: profile.php?signin=69");
+                            // echo $ed;
                         }
                         else{
                             echo "query failed:".$mysqli->error;
@@ -117,6 +166,7 @@
                         //Execute
                         if($result=$mysqli->query($qu)){
                             header("Location: profile.php?signin=69");
+                            // echo $ed;
                         }
                         else{
                             echo "query failed:".$mysqli->error;
