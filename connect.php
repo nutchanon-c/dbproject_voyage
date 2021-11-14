@@ -3,7 +3,7 @@
     $host = 'localhost';
     $user = 'root';
     $password = '';
-    $dbname = 'ontime_326_3';
+    $dbname = 'voyage_db';
     //Connect with the database
     $mysqli = new mysqli($host, $user, $password, $dbname);
     //Feedback when connection error

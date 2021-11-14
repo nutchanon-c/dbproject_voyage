@@ -234,12 +234,64 @@
             }
 
 
+            
+
+
+
+
+
+
 
 
             ?>
         </div>
-    </div>
 
+        
+    </div>
+    <?php 
+        // get average rating of Rating from user_review table where user_view.reservation_id = reservation.reservation_id and room_reservation_id and room.room_id = room_reservation.room_id and room.hotel_id = hotel.hotel_id and hotel.hotel_id = '$hotelID'
+        $sql = "SELECT AVG(User_Review.Rating) AS avg FROM user_review, reservation, room_reservation, room, hotel WHERE user_review.Reservation_ID = reservation.Reservation_ID AND reservation.Reservation_ID = room_reservation.Reservation_ID AND room_reservation.Room_ID = room.Room_ID AND room.Hotel_ID = hotel.Hotel_ID AND hotel.Hotel_ID = '$hotelID'";
+        $result = $mysqli->query($sql);
+        $row = $result->fetch_assoc();
+        if ($row['avg'] == null) {
+            // display no rating
+            echo '<div class="hotel_info_list">';
+            echo '<h2>No Rating</h2>';
+            echo '</div>';
+        } else {
+            $avg = $row['avg'];
+            // display average rating
+            echo '<div class="hotel_info_list">';
+            echo '<h2>Average Rating</h2>';
+            echo '<h2>' . $avg . '</h2>';
+            echo '</div>';
+        }
+
+        // display all reviews of this hotel from user_review table where user_review.reservation_id = reservation.reservation_id and room_reservation_id and room.room_id = room_reservation.room_id and room.hotel_id = hotel.hotel_id and hotel.hotel_id = '$hotelID'
+        $sql = "SELECT * FROM user_review, reservation, room_reservation, room, hotel, user WHERE user_review.Reservation_ID = reservation.Reservation_ID AND reservation.Reservation_ID = room_reservation.Reservation_ID AND room_reservation.Room_ID = room.Room_ID AND user_review.user_ID = user.user_ID AND room.Hotel_ID = hotel.Hotel_ID AND hotel.Hotel_ID = '$hotelID'";
+        $result = $mysqli->query($sql);
+        if ($result->num_rows > 0) {
+            echo '<div class="hotel_info_list">';
+            echo '<h2>Reviews</h2>';
+            echo '<list>';
+            echo '<ul>';
+            while ($row = $result->fetch_assoc()) {
+                echo '<li>' . $row['FirstName'] . '</li>';
+                echo '<li>' . $row['Rating'] . '</li>';
+                echo '<li>' . $row['Comment'] . '</li>';
+                echo '<hr>';
+            }
+            echo '</ul>';
+            echo '</list>';
+            echo '</div>';
+        } else {
+            // display no review
+            echo '<div class="hotel_info_list">';
+            echo '<h2>No Review</h2>';
+            echo '</div>';
+        }
+
+        ?>
 </body>
 
 </html>

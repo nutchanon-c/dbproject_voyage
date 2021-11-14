@@ -15,10 +15,27 @@
 </head>
 <body>
 <div class="container">
-        <div class="headbar">
-                <a href="home.php"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>
-                <span><button type="submit" id="signin_button" onClick='document.location.href="login.php"'>Sign in</button></span>      
-        </div>        
+<div class="headbar">
+            <?php
+            session_start();
+                if(isset($_GET['signin'])){
+                    echo '<a href="home.php?signin=69"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>';
+                }
+                else{
+                    echo '<a href="home.php"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>';
+                }
+                ?>
+                <span>
+                    <?php
+                    if(isset($_GET['signin'])){
+                        echo '<button type="submit" id="signin_button">'.$_SESSION['FirstName'].'</button>';
+                    }
+                    else{
+                        echo '<button type="submit" id="signin_button" onClick=document.location.href="login.php">Sign in</button>';
+                    }
+                    ?>
+                </span>      
+        </div>       
     </div>
 
     <div class="background_image" style="position: absolute; width: 100%">
@@ -137,7 +154,7 @@
 
         echo "<p>Total Additional Service Cost: ".$asPrice." Baht</p>";
         echo "<h2>Total Price: ".$totalPrice." Baht</h2>";
-
+        $_SESSION['totalPrice'] = $totalPrice;
 
         ?>
         
@@ -145,7 +162,7 @@
         <div class="payment_method">
         <!-- label for payment_method -->
         <label for="payment_method">Payment Method:</label>
-        <form action="reservation_confirmation.php" method="post">
+        <form action="reservation_confirmation.php?signin=69" method="post">
             <input type="radio" name="payment_method" value="credit_card" checked>Credit Card<br>
             <input type="radio" name="payment_method" value="cash">Cash<br>
             <input type="submit" value="Confirm Reservation" name="confirm">

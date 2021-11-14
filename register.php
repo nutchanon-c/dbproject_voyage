@@ -49,7 +49,7 @@
                 <input type="text" name="lastname" placeholder="Last name" required>
             </div>
             <div class="form_input">
-                <input type="date" name="dob" placeholder="Date of birth" required>
+                <input placeholder="Date of Birth" class="textbox-n" type="text" onfocus="(this.type='date')" id="date" required>
             </div>
             <div class="form_input">
                 <input type="text" name="address" placeholder="Address" required>
@@ -57,6 +57,24 @@
             <div class="form_input">
                 <input type="text" name="tel" placeholder="Tel" required>
             </div>
+
+            <!-- add gender selection -->
+            <div class="form_input" >
+            <label for="gender"> Select you gender</label>
+            <select name="gender" required>
+                <option value="none" selected disabled>Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            </div>
+
+
+            
+            
+
+
+
             <div class="form_input">
                 <input type="submit" name="submit" value="Register">
             </div>

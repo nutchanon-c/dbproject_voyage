@@ -101,8 +101,17 @@
                 //  echo "<button type='submit'name=".$row['Room_Type']."value=".$row['Room_Type']." >Book Now</button>";
                 // echo "</form>";
                 echo '<div class="form_group">';
-            echo '<label for="room_number">Number of Rooms</label>';
-            echo '<input type="number" name="room_number" id="room_number" min="1" max="'.$row2['num'].'" required>';
+
+                // if count = 0, make disabled text box form showing no rooms available
+                if($row2['num'] == 0){
+                    echo '<label for="room_number">Number of Rooms</label>';
+                    echo '<input type="number" name="room_number" id="room_number" min="0" max="0" placeholder="No rooms available" disabled> ';
+                }
+                else{
+                    echo '<label for="room_number">Number of Rooms</label>';
+                    echo '<input type="number" name="room_number" id="room_number" min="1" max="'.$row2['num'].'" placeholder="Maximum Room: '.$row2['num'].'"required>';
+                }
+            
             echo '</div>';
             }
         }

@@ -27,7 +27,11 @@
 </style>
 </head>
 <body>
-    <?php session_start(); //Start the session to use the value kept in the ?>
+    <?php session_start(); //Start the session to use the value kept in the 
+
+        
+    
+    ?>
     <div class="container">
         <div class="headbar">
             <?php
@@ -166,7 +170,7 @@
         if($result = $mysqli->query($r)){
             while($row = $result->fetch_array()){
                 echo $count.". ".$row['HotelName'].": ".$row['CheckIn_Date']." to ".$row['CheckOut_Date'];
-                echo '<button onClick=document.location.href="reservation_detail.php?reservation_id='.$row['Reservation_ID'].'">Detail</button>';
+                echo '<button onClick=document.location.href="reservation_detail.php?signin=69&reservation_id='.$row['Reservation_ID'].'">Detail</button>';
                 echo '<br>';
                 $count++;
             }
