@@ -4,32 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voyage</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
-    <style>
-        body {
-            font-family: 'Ramabhadra', sans-serif;
-        }
-</style>
+    <title>Add Admin</title>
 </head>
 <body>
-    <div class="container">
-        <div class="headbar">
-                <a href="home.php"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>
-                <span><button type="submit" id="signin_button" onClick='document.location.href="login.php"'>Sign in</button></span>      
-        </div>        
-    </div>
-
-    <div class="background_image" style="position: absolute; width: 100%">
-<img src="./assets/bg.png">
-</div>
-
-
-<!-- create registration form with username, password, email, first name, last name, date of birth, address, tel -->
-<div class="container" style="text-align: center;">
-    <div class="form_container">
-        <form action="adduser.php" method="post">
+<nav class='navbar'>
+            <!-- link to Admin Home Page -->
+            <a href='admin_home.php' class='navbar-brand'>Admin Home</a>
+            <list>
+                <ul>
+                    <li><a href='admin_hotel.php'>Hotel Information</a></li>
+                    <li><a href='admin_userinfo.php'>User Information</a></li>
+                    <li><a href='admin_reservation.php'>Reservation Information</a></li>
+                    <li><a href='admin_comment.php'>User Comment</a></li>
+                    <li><a href='admin_addser.php'>Additional Service</a></li>
+                    <li><a href='admin_Staff.php'>Staff Information</a></li>
+                </ul>
+            </list>
+            <!-- logout button to go back to home.php -->
+            <a href='logout.php' class='navbar-brand'>Logout</a>
+        </nav>
+<form action="admin_add_process.php" method="post">
             <div class="form_title">
                 <h1>Register</h1>
             </div>
@@ -67,10 +61,7 @@
                 <option value="Female">Female</option>
                 <option value="Other">Other</option>
             </select>
-            </div>
-
-
-            
+            </div>    
             
 
 
@@ -79,9 +70,7 @@
                 <input type="submit" name="submit" value="Register">
             </div>
         </form>
-    </div>
- 
 
 </body>
-
 </html>
+

@@ -9,6 +9,18 @@
 </head>
 <body>
     <div class='container'>
+    <main>
+            <?php
+                //Start session and Connect to the database
+                session_start();
+                require_once('connect.php');
+                //Get the userID and FirstName
+                $uid = $_SESSION['User_ID'];
+                $name = $_SESSION['FirstName'];
+                //Display the information Section
+                echo '<h2>Administrator Home Page</h2>';
+            ?>
+        </main>
         <nav class='navbar'>
             <!-- link to Admin Home Page -->
             <a href='admin_home.php' class='navbar-brand'>Admin Home</a>
@@ -22,19 +34,10 @@
                     <li><a href='admin_Staff.php'>Staff Information</a></li>
                 </ul>
             </list>
+            <!-- logout button to go back to home.php -->
+            <a href='logout.php' class='navbar-brand'>Logout</a>
         </nav>
-        <main>
-            <?php
-                //Start session and Connect to the database
-                session_start();
-                require_once('connect.php');
-                //Get the userID and FirstName
-                $uid = $_SESSION['User_ID'];
-                $name = $_SESSION['FirstName'];
-                //Display the information Section
-                echo '<h2>Administrator Home Page</h2>';
-            ?>
-        </main>
+        
     </div>
     
 </body>

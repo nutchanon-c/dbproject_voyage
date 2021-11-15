@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- use admincss.css -->
     <link rel="stylesheet" href="admincss.css">
-    <title>User Information</title>
+    <title>Add Service</title>
 </head>
 <body>
 <nav class='navbar'>
@@ -25,29 +25,25 @@
             <!-- logout button to go back to home.php -->
             <a href='logout.php' class='navbar-brand'>Logout</a>
         </nav>
-<?php 
-
-session_start();
-require_once('connect.php');
-
-// select * from user
-$sql = "SELECT * FROM user";
-$result = $mysqli->query($sql);
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_array()) {
-        // display user_id, Username, Password, FirstName, LastName, Email, Address, Tel, DOB, Gender, Role of each user into a table
-
-
-        echo "<table border='1'><tr></td><td><b>User ID:</b> ".$row['user_id']."<br><b>Username:</b> ".$row['Username']."<br><b>Password:</b> ".$row['Password']."<br><b>First Name:</b> ".$row['FirstName']."<br><b>Last Name:</b> ".$row['LastName']."<br><b>Email:</b> ".$row['Email']."<br><b>Address:</b> ".$row['Address']."<br><b>Tel:</b> ".$row['Tel']."<br><b>DOB:</b> ".$row['DOB']."<br><b>Gender:</b> ".$row['Gender']."<br><b>Role:</b> ".$row['Role']."</td></tr></table>";
-        // add edit button
-        echo "<a href='user_edit.php?UserID=".$row['user_id']."'><button>Edit</button></a>";
-    }
-} else {
-    echo "0 results";
-}
+        <?php
+        session_start();
+        require_once('connect.php');
+        // create form to type in Service Name and Service Price
+        echo "<form action='admin_addser_add_process.php' method='post'>";
+        echo "<h2>Add New Service</h2>";
+        echo "<label for='service_name'>Service Name:</label>";
+        echo "<input type='text' name='service_name' id='service_name' required>";
+        echo "<br>";
+        echo "<label for='service_price'>Service Price:</label>";
+        echo "<input type='text' name='service_price' id='service_price' required>";
+        echo "<input type='submit' value='Add Service'>";
+        echo "</form>";
 
 
-?>
+        
+
+        ?>
+
 </body>
 </html>
+

@@ -20,6 +20,8 @@
                     <li><a href='admin_Staff.php'>Staff Information</a></li>
                 </ul>
             </list>
+            <!-- logout button to go back to home.php -->
+            <a href='logout.php' class='navbar-brand'>Logout</a>
         </nav>
         <?php
             session_start();

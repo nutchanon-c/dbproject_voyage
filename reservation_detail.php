@@ -81,11 +81,11 @@
             // echo "<h1>$rstatus</h1>";
             echo "<h1>Reservation Detail: ".$hotelname."</h1>";
             echo "<h2>Hotel Address: ".$hotel_address."</h2>";
-            echo "<h2>Room Type: ".$room_type."</h2>";
-            echo "<h2>Check In: ".$checkin."</h2>";
-            echo "<h2>Check Out: ".$checkout."</h2>";
-            echo "<h2>Room Price: ".$room_price."</h2>";
-            echo "<h2>Number of guests: ".$guestNo."</h2>";
+            echo "<h3>Room Type: ".$room_type."</=>";
+            echo "<h3>Check In: ".$checkin."</h3>";
+            echo "<h3>Check Out: ".$checkout."</h3>";
+            echo "<h3>Room Price: ".$room_price."</h3>";
+            echo "<h3>Number of guests: ".$guestNo."</h3>";
             // if rstatus = 0: echo "Pending", else if rstatus = 1: echo "Confirmed", if status = 2 echo "Finished"
             if($rstatus == 0){
                 echo "<h2>Status: Pending</h2>";
@@ -94,6 +94,9 @@
             }
             else if($rstatus == 2){
                 echo "<h2>Status: Finished</h2>";
+            }
+            else if($rstatus == 3){
+                echo "<h2>Status: Cancelled</h2>";
             }
 
             // if status = 2: show a write review button that links to review.php
@@ -107,11 +110,26 @@
                 $num_reviews = $result2->num_rows;
                 // echo "<h2>Number of reviews: ".$num_reviews."</h2>";
             }
-
+            // echo $rstatus;
             // if num_reviews = 0: show a write review button that links to review.php. Else, disable the button and label "Already Reviewed"
+            // echo $num_reviews;
             if($num_reviews == 0){
-                echo "<button type='submit' id='review_button' onClick='document.location.href=\"review.php?signin=69&reservation_id=$reservationid\"'>Write a Review</button>";
-            } else{
+                if($rstatus == 2){
+                    echo "<button type='submit' id='review_button' onClick='document.location.href=\"review.php?signin=69&reservation_id=$reservationid\"'>Write a Review</button>";
+                } 
+                // if num_reviews = 0 and rstatus = 1: disable the button and label "Reservation Pending"
+                else if($rstatus == 1){
+                    echo "<button type='submit' id='review_button' disabled>Reservation Confirmed! Please Review After Your Visit</button>";
+                }
+                else if($rstatus == 0){
+                    echo "<button type='submit' id='review_button' disabled>Reservation Pending</button>";
+                }
+                // if num_reviews = 0 and rstatus = 3: disable the button and label "Reservation Cancelled"
+                else if($rstatus == 3){
+                    echo "<button type='submit' id='review_button' disabled>Reservation Cancelled</button>";
+                }     
+            }    
+            else{
                 echo "<button type='submit' id='review_button' disabled>Already Reviewed</button>";
             }
 

@@ -11,7 +11,7 @@
         $id = $_SESSION['User_ID'];
         // $name = $_POST['name'];
         // $email = $_POST['email'];
-        $review = $_POST['comment'];
+        $review = $mysqli -> real_escape_string($_POST['comment']);
         $rating = $_POST['rating'];
         $date = date('Y-m-d');
         $time = date('H:i:s');
@@ -37,7 +37,7 @@
             // redirect to review page
             header('Location: profile.php?signin=69');
         }else{
-            die('Unable to add review.');
+            echo 'Error'.$mysqli->error;
         }
     }
 

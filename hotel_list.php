@@ -57,13 +57,15 @@
         .hotel_list_item img {
             /* put to the left */
             float: left;
-            width: 20em;
-            /* height: 1em; */
+            width: 15em;
+            height: 10em;
             margin-right: 1em;
             border-radius: 15px;
             margin-right: 5em;
-            border: 1px solid #ddd;
+            border: 1px solid #ddd;   
+            object-fit: cover;
         }
+
 
         .hotel_list_item div{
             margin-left: 1em;

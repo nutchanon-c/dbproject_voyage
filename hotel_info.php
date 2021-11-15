@@ -268,22 +268,33 @@
         }
 
         // display all reviews of this hotel from user_review table where user_review.reservation_id = reservation.reservation_id and room_reservation_id and room.room_id = room_reservation.room_id and room.hotel_id = hotel.hotel_id and hotel.hotel_id = '$hotelID'
-        $sql = "SELECT * FROM user_review, reservation, room_reservation, room, hotel, user WHERE user_review.Reservation_ID = reservation.Reservation_ID AND reservation.Reservation_ID = room_reservation.Reservation_ID AND room_reservation.Room_ID = room.Room_ID AND user_review.user_ID = user.user_ID AND room.Hotel_ID = hotel.Hotel_ID AND hotel.Hotel_ID = '$hotelID'";
+        $sql = "SELECT *, user_review.Rating FROM user_review, reservation, room_reservation, room, hotel, user WHERE user_review.Reservation_ID = reservation.Reservation_ID AND reservation.Reservation_ID = room_reservation.Reservation_ID AND room_reservation.Room_ID = room.Room_ID AND user_review.user_ID = user.user_ID AND room.Hotel_ID = hotel.Hotel_ID AND hotel.Hotel_ID = '$hotelID'";
         $result = $mysqli->query($sql);
         if ($result->num_rows > 0) {
-            echo '<div class="hotel_info_list">';
-            echo '<h2>Reviews</h2>';
-            echo '<list>';
-            echo '<ul>';
-            while ($row = $result->fetch_assoc()) {
-                echo '<li>' . $row['FirstName'] . '</li>';
-                echo '<li>' . $row['Rating'] . '</li>';
-                echo '<li>' . $row['Comment'] . '</li>';
-                echo '<hr>';
+            while($row = $result->fetch_array()) {
+                // show all reviews in table format
+                // echo $row['Rating'];
+                echo '<div class="hotel_info_list">';
+                echo '<h2>' . $row['FirstName'] . '</h2>';
+                echo '<h2>' . $row['Rating'] . '</h2>';
+                echo '<p>' . $row['Comment'] . '</p>';
+                echo '</div>';
             }
-            echo '</ul>';
-            echo '</list>';
-            echo '</div>';
+
+
+            // echo '<div class="hotel_info_list">';
+            // echo '<h2>Reviews</h2>';
+            // echo '<list>';
+            // echo '<ul>';
+            // while ($row = $result->fetch_assoc()) {
+            //     echo '<li>' . $row['FirstName'] . '</li>';
+            //     echo '<li>' . $row['Rating'] . '</li>';
+            //     echo '<li>' . $row['Comment'] . '</li>';
+            //     echo '<hr>';
+            // }
+            // echo '</ul>';
+            // echo '</list>';
+            // echo '</div>';
         } else {
             // display no review
             echo '<div class="hotel_info_list">';

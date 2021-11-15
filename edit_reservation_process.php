@@ -19,12 +19,12 @@
     if($mysqli->query($sql)){
         echo "Room Status Updated";
         // add button to go back to admin_reservation.php
-        echo "<br>";
-        echo "<form action='admin_reservation.php' method='post'>";
-        // echo "<input type='hidden' name='ReservationID' value='".$rid."'>";
-        echo "<input type='submit' value='Back'>";
-        echo "</form>";
-
+        // echo "<br>";
+        // echo "<form action='admin_reservation.php' method='post'>";
+        // // echo "<input type='hidden' name='ReservationID' value='".$rid."'>";
+        // echo "<input type='submit' value='Back'>";
+        // echo "</form>";
+        // header back to admin_reservation.php
     }
     else{
         echo "Error updating record: " . $mysqli->error;
