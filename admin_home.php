@@ -10,6 +10,8 @@
 <body>
     <div class='container'>
         <nav class='navbar'>
+            <!-- link to Admin Home Page -->
+            <a href='admin_home.php' class='navbar-brand'>Admin Home</a>
             <list>
                 <ul>
                     <li><a href='admin_hotel.php'>Hotel Information</a></li>
@@ -30,9 +32,7 @@
                 $uid = $_SESSION['User_ID'];
                 $name = $_SESSION['FirstName'];
                 //Display the information Section
-                echo '<h1>Hello World!</h1>';
-                echo '<h1>This is the information for U admin</h1>';
-                echo '<h2>Administrator HomePage</h2>';
+                echo '<h2>Administrator Home Page</h2>';
             ?>
         </main>
     </div>

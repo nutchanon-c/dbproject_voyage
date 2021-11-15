@@ -155,6 +155,14 @@
         echo "<p>Total Additional Service Cost: ".$asPrice." Baht</p>";
         echo "<h2>Total Price: ".$totalPrice." Baht</h2>";
         $_SESSION['totalPrice'] = $totalPrice;
+        // insert into TotalPrice of Reservation table
+        $sql = "UPDATE Reservation SET TotalPrice = '$totalPrice' WHERE Reservation_ID = '$reserid'";
+        // $mysqli->query($sql);
+        if($mysqli->query($sql) === TRUE){
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $mysqli->error;
+        }
 
         ?>
         

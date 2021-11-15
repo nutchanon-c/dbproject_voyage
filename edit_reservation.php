@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Reservation</title>
+</head>
+<body>
+<nav class='navbar'>
+            <!-- link to Admin Home Page -->
+            <a href='admin_home.php' class='navbar-brand'>Admin Home</a>
+            <list>
+                <ul>
+                    <li><a href='admin_hotel.php'>Hotel Information</a></li>
+                    <li><a href='admin_userinfo.php'>User Information</a></li>
+                    <li><a href='admin_reservation.php'>Reservation Information</a></li>
+                    <li><a href='admin_comment.php'>User Comment</a></li>
+                    <li><a href='admin_addser.php'>Additional Service</a></li>
+                    <li><a href='admin_Staff.php'>Staff Information</a></li>
+                </ul>
+            </list>
+        </nav>
+        <?php
+            session_start();
+            require_once('connect.php');
+            $rid = $_GET['ReservationID'];
+            $sql = "SELECT *, r.status FROM user u, reservation r, room_reservation rr, room rm, hotel h WHERE r.reservation_id = rr.reservation_id AND rr.room_id = rm.room_id AND rm.hotel_id = h.hotel_id AND r.reservation_ID = $rid;";
+            $result = $mysqli->query($sql);
+            $row = $result->fetch_array();
+            // display Reservation_ID, Hotel_ID, HotelName, User_ID, FirstName, LastName, CheckIn_Date, CheckOut_Date, Room_ID, Room_Type, Status
+            echo "<hr><h2>Edit Reservation Information</h2>";
+            echo "<form action='edit_reservation_process.php' method='POST'>";
+            echo "<input type='hidden' name='ReservationID' value='".$row['Reservation_ID']."'>";
+            echo "<input type='hidden' name='RRID' value='".$row['RR_ID']."'>";
+            // echo $row['RR_ID'];
+            echo "<table>";
+            echo "<tr><td>Reservation ID: </td><td><input type='text' name='ReservationID' value='".$row['Reservation_ID']."' disabled></td></tr>";
+            echo "<tr><td>Hotel ID: </td><td><input type='text' name='HotelID' value='".$row['hotel_id']."'disabled></td></tr>";
+            echo "<tr><td>Hotel Name: </td><td><input type='text' name='HotelName' value='".$row['HotelName']."'disabled></td></tr>";
+            echo "<tr><td>User ID: </td><td><input type='text' name='UserID' value='".$row['User_ID']."'disabled></td></tr>";
+            echo "<tr><td>First Name: </td><td><input type='text' name='FirstName' value='".$row['FirstName']."'disabled></td></tr>";
+            echo "<tr><td>Last Name: </td><td><input type='text' name='LastName' value='".$row['LastName']."'disabled></td></tr>";
+            echo "<tr><td>Check In Date: </td><td><input type='date' name='CheckInDate' value='".$row['CheckIn_Date']."'disabled></td></tr>";
+            echo "<tr><td>Check Out Date: </td><td><input type='date' name='CheckOutDate' value='".$row['CheckOut_Date']."'disabled></td></tr>";
+            echo "<tr><td>Room ID: </td><td><input type='text' name='RoomID' value='".$row['room_id']."'disabled></td></tr>";
+            echo "<tr><td>Room Type: </td><td><input type='text' name='RoomType' value='".$row['Room_Type']."'disabled></td></tr>";
+            // make dropdown list from 0 to 3 for Status
+            echo "<tr><td>Status: </td><td><select name='Status' required>";
+            for ($i = 0; $i < 4; $i++) {
+                if ($i == $row['status']) {
+                    echo "<option value='$i' selected>$i</option>";
+                } else {
+                    echo "<option value='$i'>$i</option>";
+                }
+            }
+            echo "</select></td></tr>";
+            // echo "<tr><td>Status: </td><td><input type='text' name='Status' value='".$row['Status']."'></td></tr>";
+            echo "<tr><td><input type='submit' value='Submit'></td></tr>";
+            echo "</table>";
+            echo "</form>";
+
+
+        ?>
+</body>
+</html>

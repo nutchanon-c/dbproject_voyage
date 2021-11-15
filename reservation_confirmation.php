@@ -152,6 +152,7 @@
             echo "<h2>Check In: ".$checkin."</h2>";
             echo "<h2>Check Out: ".$checkout."</h2>";
             echo "<h2>Room Price: ".$room_price."</h2>";
+            echo "<h2>Total Price: ".$totalPrice."</h2>";
             echo "<h2>Number of guests: ".$guestNo."</h2>";
             // if rstatus = 0: echo "Pending", else if rstatus = 1: echo "Confirmed", if status = 2 echo "Finished"
             if($rstatus == 0){

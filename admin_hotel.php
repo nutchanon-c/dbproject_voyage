@@ -18,6 +18,8 @@
 <body>
     <div class="container">
     <nav class='navbar'>
+            <!-- link to Admin Home Page -->
+            <a href='admin_home.php' class='navbar-brand'>Admin Home</a>
             <list>
                 <ul>
                     <li><a href='admin_hotel.php'>Hotel Information</a></li>
