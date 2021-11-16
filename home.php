@@ -149,22 +149,46 @@
     <table id="recommended_places_table">
         <tr>
             <td>
-                <img src="./assets/bkk.png">
+                <?php
+                    if(isset($_GET['signin'])){ echo '<a href="hotel_list.php?signin=69&country=Thailand&city=Bangkok"><img src="./assets/bkk.png"></a>';}
+                    else{ echo '<a href="hotel_list.php?country=Thailand&city=Bangkok"><img src="./assets/bkk.png"></a>';}
+                ?>
+                <!-- <img src="./assets/bkk.png"> -->
             </td>
             <td>
-                <img src="./assets/london.png">
+                <?php
+                    if(isset($_GET['signin'])){ echo '<a href="hotel_list.php?signin=69&country=United+Kingdom&city=London"><img src="./assets/london.png"></a>';}
+                    else{ echo '<a href="hotel_list.php?country=United+Kingdom&city=London"><img src="./assets/london.png"></a>';}
+                ?>
+                <!-- <img src="./assets/london.png"> -->
             </td>
             <td>
-                <img src="./assets/chicago.png">
+                <?php
+                    if(isset($_GET['signin'])){ echo '<a href="hotel_list.php?signin=69&country=United%20States&city=Chicago(IL)"><img src="./assets/chicago.png"></a>';}
+                    else{ echo '<a href="hotel_list.php?country=United%20States&city=Chicago(IL)"><img src="./assets/chicago.png"></a>';}
+                ?>
+                <!-- <img src="./assets/chicago.png"> -->
             </td>
             <td>
-                <img src="./assets/la.png">
+                <?php
+                    if(isset($_GET['signin'])){ echo '<a href="hotel_list.php?signin=69&country=United%20States&city=Los%20Angeles(CA)"><img src="./assets/la.png"></a>';}
+                    else{ echo '<a href="hotel_list.php?country=United%20States&city=Los%20Angeles(CA)"><img src="./assets/la.png"></a>';}
+                ?>
+                <!-- <img src="./assets/la.png"> -->
             </td>
             <td>
-                <img src="./assets/tokyo.png">
+                <?php
+                    if(isset($_GET['signin'])){ echo '<a href="hotel_list.php?signin=69&country=Japan&city=Tokyo"><img src="./assets/tokyo.png"></a>';}
+                    else{ echo '<a href="hotel_list.php?country=Japan&city=Tokyo"><img src="./assets/tokyo.png"></a>';}
+                ?>
+                <!-- <img src="./assets/tokyo.png"> -->
             </td>
             <td>
-                <img src="./assets/osaka.png">
+                <?php
+                    if(isset($_GET['signin'])){ echo '<a href="hotel_list.php?signin=69&country=Japan&city=Osaka"><img src="./assets/osaka.png"></a>';}
+                    else{ echo '<a href="hotel_list.php?country=Japan&city=Osaka"><img src="./assets/osaka.png"></a>';}
+                ?>
+                <!-- <img src="./assets/osaka.png"> -->
             </td>
         </tr>
         <tr id="recommended-places-names">
