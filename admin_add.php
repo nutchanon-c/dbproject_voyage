@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admincss.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Add Admin</title>
 </head>
 <body>
@@ -22,6 +25,7 @@
             </list>
             <!-- logout button to go back to home.php -->
             <a href='logout.php' class='navbar-brand'>Logout</a>
+            <hr>
         </nav>
 <form action="admin_add_process.php" method="post">
             <div class="form_title">

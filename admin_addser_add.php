@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- use admincss.css -->
-    <link rel="stylesheet" href="admincss.css">
+    <link rel="stylesheet" href="admincss.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Add Service</title>
 </head>
 <body>
@@ -24,6 +26,7 @@
             </list>
             <!-- logout button to go back to home.php -->
             <a href='logout.php' class='navbar-brand'>Logout</a>
+            <hr>
         </nav>
         <?php
         session_start();

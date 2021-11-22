@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voyage</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
     <style>
         body {
@@ -90,26 +90,30 @@
 <body>
     <?php session_start(); ?>
     <div class="container">
-        <div class="headbar">
+    <div class="headbar">
             <?php
-            if (isset($_GET['signin'])) {
-                echo '<a href="home.php?signin=69"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>';
-            } else {
-                echo '<a href="home.php"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>';
-            }
-            ?>
-            <span>
-                <?php
-                if (isset($_GET['signin'])) {
-                    echo '<button type="submit" id="signin_button" onClick=document.location.href="profile.php?signin=69&user_id=' . $_SESSION['User_ID'] . '">' . $_SESSION['FirstName'] . '</button>';
-                    // make sign out text
-                    echo '<button type="submit" id="signout_button" onClick=document.location.href="logout.php?signin=69&user_id=' . $_SESSION['User_ID'] . '">Sign Out</button>';
-                } else {
-                    echo '<button type="submit" id="signin_button" onClick=document.location.href="login.php">Sign in</button>';
+                if(isset($_GET['signin'])){
+                    echo '<a href="home.php?signin=69"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>';
+                }
+                else{
+                    echo '<a href="home.php"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>';
                 }
                 ?>
-            </span>
-        </div>
+                <span>
+                    <?php
+                    echo '<div class="headbar_btns">';
+                    if(isset($_GET['signin'])){
+                        echo '<button type="submit" id="signin_button" onClick=document.location.href="profile.php?signin=69&user_id='.$_SESSION['User_ID'].'">'.$_SESSION['FirstName'].'</button>';
+                        // make sign out text
+                        echo '<button type="submit" class="logout_button" id="signout_button" onClick=document.location.href="logout.php?signin=69&user_id='.$_SESSION['User_ID'].'">Sign Out</button>';
+                    }
+                    else{
+                        echo '<button type="submit" id="signin_button" onClick=document.location.href="login.php">Sign in</button>';
+                    }
+                    echo '</div>';
+                    ?>
+                </span>      
+        </div> 
 
 
     </div>
@@ -151,6 +155,25 @@
             echo '<img class="hotel_img" src="' . $picture . '" alt="">';
             echo '<h1>' . $hotelName . '</h1>';
             echo '<h2>' . $fullAddress . '</h2>';
+            echo '<hr>';
+
+                    // get average rating of Rating from user_review table where user_view.reservation_id = reservation.reservation_id and room_reservation_id and room.room_id = room_reservation.room_id and room.hotel_id = hotel.hotel_id and hotel.hotel_id = '$hotelID'
+        $sql = "SELECT AVG(User_Review.Rating) AS avg FROM user_review, reservation, room_reservation, room, hotel WHERE user_review.Reservation_ID = reservation.Reservation_ID AND reservation.Reservation_ID = room_reservation.Reservation_ID AND room_reservation.Room_ID = room.Room_ID AND room.Hotel_ID = hotel.Hotel_ID AND hotel.Hotel_ID = '$hotelID'";
+        $result = $mysqli->query($sql);
+        $row = $result->fetch_assoc();
+        if ($row['avg'] == null) {
+            // display no rating
+            echo '<div class="hotel_info_list">';
+            echo '<h2>No Rating</h2>';
+            echo '</div>';
+        } else {
+            $avg = $row['avg'];
+            // display average rating
+            echo '<div class="rating_list_score">';
+            echo '<h2>Average Rating</h2>';
+            echo '<h2>' . $avg . '</h2>';
+            echo '</div>';
+        }
             echo '</div>';
 
 
@@ -160,19 +183,6 @@
 
             // get amount of free rooms to display in dropdown
             $d = "SELECT COUNT(*) FROM room WHERE room.Hotel_ID = '$hotelID' AND room.BedType_ID = bedtype.BedType_ID AND room.status = 0";
-
-            // echo '<select>';
-            // for($i = 0; $i <= 55; $i++){
-
-            //     echo "<option value=".$i.">".$i."</option>";
-            //     // echo $i;
-
-            // }
-            // echo '</select>';
-
-            // after selection:
-            // 1. query list of room_id with same room_type and hotel_id and status = 0 to get list of room_id that are free ADD LIMIT TO AMOUNT OF SELECTED
-            // 2. update those status of room_id to 1 WHEN DOING TRANSACTION FROM TRANSACTION PAGE
 
             //Execute the query
             if ($result = $mysqli->query($q)) {
@@ -249,23 +259,9 @@
         
     </div>
     <?php 
-        // get average rating of Rating from user_review table where user_view.reservation_id = reservation.reservation_id and room_reservation_id and room.room_id = room_reservation.room_id and room.hotel_id = hotel.hotel_id and hotel.hotel_id = '$hotelID'
-        $sql = "SELECT AVG(User_Review.Rating) AS avg FROM user_review, reservation, room_reservation, room, hotel WHERE user_review.Reservation_ID = reservation.Reservation_ID AND reservation.Reservation_ID = room_reservation.Reservation_ID AND room_reservation.Room_ID = room.Room_ID AND room.Hotel_ID = hotel.Hotel_ID AND hotel.Hotel_ID = '$hotelID'";
-        $result = $mysqli->query($sql);
-        $row = $result->fetch_assoc();
-        if ($row['avg'] == null) {
-            // display no rating
-            echo '<div class="hotel_info_list">';
-            echo '<h2>No Rating</h2>';
-            echo '</div>';
-        } else {
-            $avg = $row['avg'];
-            // display average rating
-            echo '<div class="hotel_info_list">';
-            echo '<h2>Average Rating</h2>';
-            echo '<h2>' . $avg . '</h2>';
-            echo '</div>';
-        }
+        echo '<hr>';
+        echo '<hr>';
+        echo '<h1 style="text-align: center;">User Reviews</h1>';
 
         // display all reviews of this hotel from user_review table where user_review.reservation_id = reservation.reservation_id and room_reservation_id and room.room_id = room_reservation.room_id and room.hotel_id = hotel.hotel_id and hotel.hotel_id = '$hotelID'
         $sql = "SELECT *, user_review.Rating FROM user_review, reservation, room_reservation, room, hotel, user WHERE user_review.Reservation_ID = reservation.Reservation_ID AND reservation.Reservation_ID = room_reservation.Reservation_ID AND room_reservation.Room_ID = room.Room_ID AND user_review.user_ID = user.user_ID AND room.Hotel_ID = hotel.Hotel_ID AND hotel.Hotel_ID = '$hotelID'";
@@ -274,35 +270,23 @@
             while($row = $result->fetch_array()) {
                 // show all reviews in table format
                 // echo $row['Rating'];
-                echo '<div class="hotel_info_list">';
-                echo '<h2>' . $row['FirstName'] . '</h2>';
-                echo '<h2>' . $row['Rating'] . '</h2>';
-                echo '<p>' . $row['Comment'] . '</p>';
+                echo '<div class="rating_list">';
+                echo '<h2>Name: ' . $row['FirstName'] . '</h2>';
+                echo '<h2>Rating: ' . $row['Rating'] . '</h2>';
+                echo '<p><span style="font-weight:bold;">Comment:</span> ' . $row['Comment'] . '</p>';
+                echo '<hr>';
                 echo '</div>';
             }
 
-
-            // echo '<div class="hotel_info_list">';
-            // echo '<h2>Reviews</h2>';
-            // echo '<list>';
-            // echo '<ul>';
-            // while ($row = $result->fetch_assoc()) {
-            //     echo '<li>' . $row['FirstName'] . '</li>';
-            //     echo '<li>' . $row['Rating'] . '</li>';
-            //     echo '<li>' . $row['Comment'] . '</li>';
-            //     echo '<hr>';
-            // }
-            // echo '</ul>';
-            // echo '</list>';
-            // echo '</div>';
         } else {
             // display no review
-            echo '<div class="hotel_info_list">';
-            echo '<h2>No Review</h2>';
+            echo '<div style="text-align: center;">';
+            echo '<h2>No Reviews</h2>';
             echo '</div>';
         }
 
         ?>
+        <div class="placeholder"></div>
 </body>
 
 </html>

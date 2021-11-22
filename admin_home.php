@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrator Homepage</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admincss.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class='container'>
@@ -21,6 +23,7 @@
                 echo '<h2>Administrator Home Page</h2>';
             ?>
         </main>
+        <div class="admin_menu">
         <nav class='navbar'>
             <!-- link to Admin Home Page -->
             <a href='admin_home.php' class='navbar-brand'>Admin Home</a>
@@ -36,9 +39,10 @@
             </list>
             <!-- logout button to go back to home.php -->
             <a href='logout.php' class='navbar-brand'>Logout</a>
+            <hr>
         </nav>
-        
-    </div>
+        </div>
+
     
 </body>
 </html>

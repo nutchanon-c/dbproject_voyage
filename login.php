@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voyage</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
     <style>
         body {
@@ -16,8 +16,12 @@
 <body>
     <div class="container">
         <div class="headbar">
+            
                 <a href="home.php"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>
+                <div class="headbar_btns">
                 <span><button type="submit" id="signin_button" onClick='document.location.href="login.php"'>Sign in</button></span>      
+                </div>
+                
         </div>        
     </div>
 

@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Information</title>
     <!-- user admincss.css -->
-    <link rel="stylesheet" href="admincss.css">
+    <link rel="stylesheet" href="admincss.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
     <style>
@@ -34,6 +36,7 @@
             </list>
             <!-- logout button to go back to home.php -->
             <a href='logout.php' class='navbar-brand'>Logout</a>
+            <hr>
         </nav>
         <main>
             <?php 
@@ -46,13 +49,7 @@
                 $q = "SELECT * FROM Hotel";
                 if($result = $mysqli->query($q)){
                     while($row = $result->fetch_array()){
-                        // display HotelName, FullAddress, District, City, PostCode, Tel, Email in a table with border and bold tr
-                        // add image to the left of the table
-                        // echo "<table><tr><td><img src='./assets/hotels/".$row['Picture']."'></td><td><b>Hotel Name:</b> ".$row['HotelName']."<br><b>Full Address:</b> ".$row['FullAddress']."<br><b>District:</b> ".$row['District']."<br><b>City:</b> ".$row['City']."<br><b>Post Code:</b> ".$row['PostCode']."<br><b>Tel:</b> ".$row['Tel']."<br><b>Email:</b> ".$row['Email']."</td></tr></table>";
-                        // echo "<a href='hotel_edit.php?HotelID=".$row['hotel_id']."'><button>Edit</button></a>";
 
-                        
-                        // echo "</table>";
 
                         // new table layout
                         echo "<table>";
@@ -85,7 +82,7 @@
                             echo "<td>" . $row['Email'] . "</td>";
                             
                             // add edit and delete button
-                            echo "<td><a href='hotel_edit.php?AS_ID=".$row['hotel_id']."'><button>Edit</button></a></td>";
+                            echo "<td><a href='hotel_edit.php?HotelID=".$row['hotel_id']."'><button>Edit</button></a></td>";
                             // echo "<td><a href='admin_addser_delete.php?AS_ID=".$row['AS_ID']."'><button>Delete</button></a></td>";
                             echo "</tr>";
                         }

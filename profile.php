@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voyage</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
     <style>
         body {
@@ -51,24 +51,30 @@
 
     ?>
     <div class="container">
-        <div class="headbar">
+    <div class="headbar">
             <?php
-            if (isset($_GET['signin'])) {
-                echo '<a href="home.php?signin=69"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>';
-            } else {
-                echo '<a href="home.php"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>';
-            }
-            ?>
-            <span>
-                <?php
-                if (isset($_GET['signin'])) {
-                    echo '<button type="submit" id="signin_button">' . $_SESSION['FirstName'] . '</button>';
-                } else {
-                    echo '<button type="submit" id="signin_button" onClick=document.location.href="login.php">Sign in</button>';
+                if(isset($_GET['signin'])){
+                    echo '<a href="home.php?signin=69"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>';
+                }
+                else{
+                    echo '<a href="home.php"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>';
                 }
                 ?>
-            </span>
-        </div>
+                <span>
+                    <?php
+                    echo '<div class="headbar_btns">';
+                    if(isset($_GET['signin'])){
+                        echo '<button type="submit" id="signin_button" onClick=document.location.href="profile.php?signin=69&user_id='.$_SESSION['User_ID'].'">'.$_SESSION['FirstName'].'</button>';
+                        // make sign out text
+                        echo '<button type="submit" class="logout_button" id="signout_button" onClick=document.location.href="logout.php?signin=69&user_id='.$_SESSION['User_ID'].'">Sign Out</button>';
+                    }
+                    else{
+                        echo '<button type="submit" id="signin_button" onClick=document.location.href="login.php">Sign in</button>';
+                    }
+                    echo '</div>';
+                    ?>
+                </span>      
+        </div> 
 
 
     </div>
@@ -120,63 +126,6 @@
         }
         ?>
 
-        <?php
-        //Start session
-        // session_start();
-        //Obtain the userID from the value saved in the session
-        // $userid = $_SESSION['User_ID'];
-        // //Connect to the database
-        // require_once('connect.php');
-        //Query command for retriving the information
-        // $q = "SELECT * FROM user WHERE User_ID = $userid";
-        // //Execute
-        // $result = $mysqli->query($q);
-        // echo "<h1> Profile: ".$result['FirstName']." ".$result['LastName']."</h1>";
-
-        // if($result = $mysqli->query($q)){
-        //     // $_SESSION['FirstName'] = $fname;
-        //     header("Location: profile.php?signin=69");
-        //     echo "<h1> Profile: ".$result['FirstName']." ".$result['LastName']."</h1>";
-        // }
-        // else{
-        //     echo "query failed:".$mysqli->error;
-        // }
-        ?>
-        <!-- <h1>
-        Profile
-    </h1>
-    <table>
-        <tr>
-           <td>First Name</td>
-           <td><?php //$result['FirstName'] 
-                ?></td> 
-        </tr>
-        <tr>
-           <td>Last Name</td>
-           <td><?php //$result['LastName'] 
-                ?></td> 
-        </tr>
-        <tr>
-           <td>E-mail</td>
-           <td><?php //$result['Email'] 
-                ?></td> 
-        </tr>
-        <tr>
-           <td>Date of Birth</td>
-           <td><?php //$result['DOB'] 
-                ?></td> 
-        </tr>
-        <tr>
-           <td>Address</td>
-           <td><?php //$result['Address'] 
-                ?></td> 
-        </tr>
-        <tr>
-           <td>Tel</td>
-           <td><?php //$result['Tel'] 
-                ?></td> 
-        </tr>
-    </table> -->
 
 
 
@@ -189,6 +138,7 @@
         $r = "select Reservation.Reservation_ID, HotelName, CheckIn_Date, CheckOut_Date FROM Reservation, Room_Reservation, Room, Hotel WHERE Reservation.Reservation_ID = Room_Reservation.Reservation_ID AND Room_Reservation.Room_ID = Room.Room_ID AND Room.Hotel_ID = Hotel.Hotel_ID;";
         $count = 1;
         if ($result = $mysqli->query($r)) {
+            if($result->num_rows > 0){
             while ($row = $result->fetch_array()) {
                 echo $count . ". " . $row['HotelName'] . ": " . $row['CheckIn_Date'] . " to " . $row['CheckOut_Date'];
                 echo '<button onClick=document.location.href="reservation_detail.php?signin=69&reservation_id=' . $row['Reservation_ID'] . '">Detail</button>';
@@ -196,6 +146,12 @@
                 $count++;
             }
         }
+        else{
+            echo '<h3>No reservations</h3>';
+        }
+        }
+            
+        
 
         ?>
 

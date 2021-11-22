@@ -5,19 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voyage</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
     <style>
         body {
             font-family: 'Ramabhadra', sans-serif;
         }
+        .infoTable{
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+            
+    
 </style>
 </head>
 <body>
 <div class="container">
 <div class="headbar">
             <?php
-            session_start();
                 if(isset($_GET['signin'])){
                     echo '<a href="home.php?signin=69"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>';
                 }
@@ -27,15 +33,19 @@
                 ?>
                 <span>
                     <?php
+                    echo '<div class="headbar_btns">';
                     if(isset($_GET['signin'])){
-                        echo '<button type="submit" id="signin_button">'.$_SESSION['FirstName'].'</button>';
+                        echo '<button type="submit" id="signin_button" onClick=document.location.href="profile.php?signin=69&user_id='.$_SESSION['User_ID'].'">'.$_SESSION['FirstName'].'</button>';
+                        // make sign out text
+                        echo '<button type="submit" class="logout_button" id="signout_button" onClick=document.location.href="logout.php?signin=69&user_id='.$_SESSION['User_ID'].'">Sign Out</button>';
                     }
                     else{
                         echo '<button type="submit" id="signin_button" onClick=document.location.href="login.php">Sign in</button>';
                     }
+                    echo '</div>';
                     ?>
                 </span>      
-        </div>       
+        </div>        
     </div>
 
     <div class="background_image" style="position: absolute; width: 100%">
@@ -44,7 +54,7 @@
 
     <div class="summary">
         <?php
-        session_start();
+        // session_start();
         require_once('connect.php');
         $totalPrice = 0;
         $asPrice = 0;
@@ -83,12 +93,14 @@
         echo "<h1>Reservation Summary: ".$hotel_name." - ".$room_type."</h1>";
         echo "<h3>".$hotel_address."</h3>";
         
+        // echo "<div class='basicInfoTable'>";
         // make a table to show Check-in Date, Check-out Date, guestNo
-        echo "<table>";
+        echo "<table class='infoTable'>";
         echo "<tr><td>Check-in Date: </td><td>".$check_in."</td></tr>";
         echo "<tr><td>Check-out Date: </td><td>".$check_out."</td></tr>";
         echo "<tr><td>Guest No: </td><td>".$guestNo."</td></tr>";
         echo "</table>";
+        // echo "</div>";
 
 
 

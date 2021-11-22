@@ -16,17 +16,11 @@
 .as_container {
     text-align: center;
     width: 50vw;
-    /* height: 100vh; */
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
     vertical-align: middle;
     background-color: #fbfbfb;
     margin-top: 5em;
     border-radius: 15px;
     padding: 2em;
-    /* margin-left: 1em;
-    margin-right: 1em; */
 }
 
 .headbar #signin_button {
@@ -41,6 +35,28 @@
     font-size: 16px;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.headbar_btns {
+    float: right;
+    vertical-align: middle;
+    margin-top: 3em;
+    margin-right: 2em;
+}
+
+
+.logout_button {
+    background-color: #eb9534;
+    border: none;
+    color: white;
+    padding: 15px 1em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 1em;
 }
 
 .hotel_info_container {
@@ -92,8 +108,9 @@
 }
 
 .headbar button {
-    margin: 3em;
-    position: relative;
+    margin-top: auto;
+    margin-bottom: auto;
+    /* position: fixed; */
     vertical-align: middle;
     float: right;
 }
@@ -235,6 +252,8 @@ div {
     font-weight: bold;
 }
 
+
+
 .summary input[name="confirm"] {
     background-color: #459E8D;
     border: none;
@@ -258,9 +277,21 @@ div {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    border-radius: 15px;
+    border-radius: 10px;
     cursor: pointer;
 }
+
+.rating_list {
+    margin-top: 2em;
+    padding-left: 20em;
+    padding-right: 20em;
+}
+
+.rating_list_score {
+    margin-top: 1em;
+}
+
+
 
 input[name="submit"] {
     background-color: #459E8D;
@@ -276,24 +307,6 @@ input[name="submit"] {
     cursor: pointer;
 }
 
-body {
-    /* padding-top: 10%; */
-    /* background-image: url("./assets/bg.png"); */
-    /* width: 100%; */
-    /* background-size: cover; */
-    /* background-repeat: no-repeat;
-    background-size: contain; */
-    /* background-position: center; */
-    /* width: ; */
-    /* border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px; */
-    /* background-color: green; */
-    /* make background image to fill horizontally and NOT stretch vertically */
-    /* background-size: cover; */
-    /* background-repeat: no-repeat;  */
-    /* background-size: contain; */
-    /* background-position: center; */
-}
 
 .searchbox-holder {
     background-color: #f1f3f2;

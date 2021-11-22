@@ -1,6 +1,7 @@
 table {
     border-collapse: collapse;
     width: 100%;
+    margin-top: 1em;
 }
 
 tr {
@@ -9,4 +10,33 @@ tr {
 
 td {
     border: 1px solid black;
+}
+
+
+ul {
+    text-decoration: none;
+    list-style-type: circle;
+    /* text-align: center; */
+}
+
+th {
+    color: #222326;
+}
+
+body {
+    font-family: 'Ramabhadra', sans-serif;
+}
+
+input[type=submit]{
+    margin-top: 1em;
+}
+
+button{
+    margin-top: 0.5em;
+    background-color: #3262a8;
+    color: white;
+    padding: 0.5em 1em;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
 }
