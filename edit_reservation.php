@@ -68,5 +68,13 @@
 
 
         ?>
+
+        <ul>
+            <label>Status: </label>
+            <li>0: Pending</li>
+            <li>1: Confirmed</li>
+            <li>2: Finished</li>
+            <li>3: Cancelled</li>
+        </ul>
 </body>
 </html>

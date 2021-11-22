@@ -14,6 +14,7 @@
 </style>
 </head>
 <body>
+<?php session_start(); ?>
 <div class="container">
 <div class="headbar">
             <?php
@@ -91,20 +92,20 @@
                     if($_POST['payment_method'] == "credit_card"){
                         $sql2 = "INSERT INTO transaction (Reservation_ID, CardInfo_ID, Transaction_Date, Transaction_Time, Total) VALUES ($reservation_id, $cardinfo_id, CURDATE(), CURTIME(), $totalPrice)";
                         if($mysqli->query($sql2)){
-                            echo "<br>";
-                            echo "Transaction Successful";
+                            // echo "<br>";
+                            // echo "Transaction Successful";
                             
                             // update Status of reservation table to be 1 where reservation_id = reservation_id
                             $sql3 = "UPDATE reservation SET Status = 1 WHERE Reservation_ID = $reservation_id";
                             if($mysqli->query($sql3)){
-                                echo "<br>";
-                                echo "Reservation Status Updated";
+                                // echo "<br>";
+                                // echo "Reservation Status Updated";
                                 
                                 // update status of room in room table to be 1 where room_reservation.room_id = room_id and room_reservation.reservation_id = reservation_id
                                 $sql4 = "UPDATE room SET Status = 1 WHERE Room_ID = (SELECT room_id from room_reservation WHERE room_reservation.Reservation_ID = $reservation_id)";
                                 if($mysqli->query($sql4)){
-                                    echo "<br>";
-                                    echo "Room Status Updated";
+                                    // echo "<br>";
+                                    // echo "Room Status Updated";
                                 }
                                 else{
                                     echo "Error updating record: " . $mysqli->error;

@@ -17,6 +17,7 @@
 <div class="container">
 <div class="headbar">
             <?php
+            session_start();
                 if(isset($_GET['signin'])){
                     echo '<a href="home.php?signin=69"><img src="./assets/logo.png" width="150px" height="150px" style="cursor: pointer;"></a>';
                 }

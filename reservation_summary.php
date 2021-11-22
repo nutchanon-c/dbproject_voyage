@@ -21,6 +21,7 @@
 </style>
 </head>
 <body>
+<?php session_start(); ?>
 <div class="container">
 <div class="headbar">
             <?php
@@ -59,20 +60,7 @@
         $totalPrice = 0;
         $asPrice = 0;
         $rPrice = 0;
-        // $hotel_name = "HOTEL NAME";
-        // $hotel_address ="HOTEL ADDRESS";
-        // echo $_SESSION['User_ID'];
 
-        // echo "<h1>Reservation Summary: ".$hotel_name."</h1>";
-        // echo "<h3>".$hotel_address."</h3>";
-        // echo $_SESSION['Room_Type'];
-        // loop through $_POST[] 1 to 13 and check isset for each one
-        // if isset, echo the value
-        // if not isset, echo "N/A"
-        // echo $_SESSION['Reservation_ID'];
-        
-        // echo $_SESSION['RoomAmt'];
-        // select * from Hotel, Room, Reservation, Room_Reservation where Hotel.Hotel_ID = Room.Hotel_ID and Room.Room_ID = Room_Reservation.Room_ID and Room_Reservation.Reservation_ID = Reservation.Reservation_ID and Reservation.Reservation_ID = $_SESSION['Reservation_ID'];
         $reserid = $_SESSION['Reservation_ID'];
         $sql = "SELECT * FROM Hotel, Room, Reservation, Room_Reservation WHERE Hotel.Hotel_ID = Room.Hotel_ID and Room.Room_ID = Room_Reservation.Room_ID and Room_Reservation.Reservation_ID = Reservation.Reservation_ID and Reservation.Reservation_ID = $reserid;";
         if($result = $mysqli->query($sql)){
@@ -170,11 +158,9 @@
         // insert into TotalPrice of Reservation table
         $sql = "UPDATE Reservation SET TotalPrice = '$totalPrice' WHERE Reservation_ID = '$reserid'";
         // $mysqli->query($sql);
-        if($mysqli->query($sql) === TRUE){
-            echo "New record created successfully";
-        } else {
+        if($mysqli->query($sql) === FALSE){
             echo "Error: " . $sql . "<br>" . $mysqli->error;
-        }
+        } 
 
         ?>
         
