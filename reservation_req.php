@@ -49,15 +49,21 @@
     </div>
 
     <div class="reservation_details">
-    <!-- hotel name -->
-    <h1>HOTEL NAME</h1>
-    <!-- hotel address -->
-    <!-- <h2> -->
-        
+
          <?php
-         $hotel_address = "ADDRESS PLACEHOLDER";
-            // echo $hotel_name . "<br>";
-            echo $hotel_address . "<br>";
+         require_once('connect.php');
+         $hid = $_GET['HotelID'];
+
+        $sql = "SELECT HotelName, FullAddress FROM hotel WHERE Hotel_ID = '$hid'";
+        if($result = $mysqli->query($sql)){
+            if($result->num_rows > 0){
+                while($row = $result->fetch_array()){
+                    echo '<h1>'.$row['HotelName'].'</h1>';
+                    echo '<h2>'.$row['FullAddress'].'</h2>';
+                }
+            }
+        }
+
         ?>
         <!-- </h2> -->
 
