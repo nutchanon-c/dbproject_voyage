@@ -50,16 +50,45 @@
 
     <div class="reservation_details">
     <!-- hotel name -->
-    <h1>HOTEL NAME</h1>
+    <?php
+    $hid = $_GET['HotelID'];
+        require_once('connect.php');
+        $sql = "SELECT HotelName FROM hotel WHERE hotel_id = $hid";
+        if($result = $mysqli->query($sql)){
+            $hotel_name = $result->fetch_array()[0];
+         
+
+            //  $hotel_address = "ADDRESS PLACEHOLDER";
+                // echo $hotel_name . "<br>";
+                echo '<h1>'.$hotel_name.'</h1>';
+         }
+         else{
+            echo "Error: " . $sql . "<br>" . $mysqli->error;
+             
+         }
+    ?>
     <!-- hotel address -->
-    <!-- <h2> -->
+
         
          <?php
-         $hotel_address = "ADDRESS PLACEHOLDER";
-            // echo $hotel_name . "<br>";
-            echo $hotel_address . "<br>";
+         require_once('connect.php');
+         
+         $sql = "SELECT FullAddress FROM hotel WHERE hotel_id = $hid";
+         if($result = $mysqli->query($sql)){
+            $hotel_address = $result->fetch_array()[0];
+         
+
+            //  $hotel_address = "ADDRESS PLACEHOLDER";
+                // echo $hotel_name . "<br>";
+                echo $hotel_address . "<br>";
+         }
+         else{
+            echo "Error: " . $sql . "<br>" . $mysqli->error;
+             
+         }
+         
         ?>
-        <!-- </h2> -->
+
 
     <!-- reservation form with checkin date, checkout date, and number of guests -->
     <form action="reservation_q.php?signin=69" method="POST">
@@ -84,24 +113,7 @@
         if($inner = $mysqli->query($d)){
             // $temp=0;
             while($row2 = $inner->fetch_array() /* and $temp<100 */){
-                // echo "<option value=".$row['num']."></option>";
-                // $temp++;
-                // echo $row2['num'];
-                // if (isset($_GET['signin'])){
-                //     echo '<form action="addtionalService.php?signin=69" method="POST">';
-                // }
-                // else{
-                //     echo '<form action="addtionalService.php">';
-                // }
-                
-                // echo "<select name = ".$row['Room_Type'].">";
-                // for($i = 1; $i <= intval($row2['num']); $i++){
-                //     echo "<option value=".$i.">".$i."</option>";
-                //     echo $i;
-                // }
-                // echo "</select>";
-                //  echo "<button type='submit'name=".$row['Room_Type']."value=".$row['Room_Type']." >Book Now</button>";
-                // echo "</form>";
+
                 echo '<div class="form_group">';
 
                 // if count = 0, make disabled text box form showing no rooms available
@@ -123,11 +135,6 @@
         ?>
 
 
-        <!-- <div class="form_group">
-            <label for="room_number">Number of Rooms</label>
-            <input type="number" name="room_number" id="room_number" min="1" max="10" required>
-    </div> -->
-            
     <!-- goes to ADDITIONALSERVICE.PHP -->
         <button type="submit" name="submit">Next</button>
     </div>
