@@ -142,8 +142,11 @@
             $AS_ID = $i;
             $sql = "SELECT * FROM additional_service WHERE AS_ID = '$AS_ID'";
             $result = $mysqli->query($sql);
-            $row = $result->fetch_assoc();
-            $AS_name = $row['Type'];            
+            if($result->num_rows > 0){
+            
+                while($row = $result->fetch_array()){
+            $AS_name = $row['Type'];        
+            
             if (isset($_POST[$i])) {
                 echo "<p>".$AS_name." - ".$row['Price']." Baht</p>";
                 // add price of additional service to total price
@@ -152,7 +155,10 @@
             } else {
                 // echo "<p>".$i.": ".$AS_name." - Not Selected</p>";
             }
+            
         }
+        }
+    }
 
         echo "<p>Total Additional Service Cost: ".$asPrice." Baht</p>";
         echo "<h2>Total Price: ".$totalPrice." Baht</h2>";
