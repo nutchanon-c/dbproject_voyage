@@ -108,7 +108,8 @@
                     $AS_ID = $i;
                     $sql = "SELECT * FROM additional_service WHERE AS_ID = '$AS_ID'";
                     $result = $mysqli->query($sql);
-                    $row = $result->fetch_assoc();
+                    if($result->num_rows > 0){
+                    while($row = $result->fetch_array()){
                     $AS_name = $row['Type'];            
                     if (isset($_POST[$i])) {
                         // insert into RR_AS with $rr_id and $AS_ID
@@ -118,7 +119,8 @@
 
                     } else {
                         // echo "<p>".$i.": ".$AS_name." - Not Selected</p>";
-                    }
+                    }}
+                }
                 }
         }
     }
