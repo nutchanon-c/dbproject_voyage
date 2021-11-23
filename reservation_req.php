@@ -49,44 +49,21 @@
     </div>
 
     <div class="reservation_details">
-    <!-- hotel name -->
-    <?php
-    $hid = $_GET['HotelID'];
-        require_once('connect.php');
-        $sql = "SELECT HotelName FROM hotel WHERE hotel_id = $hid";
-        if($result = $mysqli->query($sql)){
-            $hotel_name = $result->fetch_array()[0];
-         
 
-            //  $hotel_address = "ADDRESS PLACEHOLDER";
-                // echo $hotel_name . "<br>";
-                echo '<h1>'.$hotel_name.'</h1>';
-         }
-         else{
-            echo "Error: " . $sql . "<br>" . $mysqli->error;
-             
-         }
-    ?>
-    <!-- hotel address -->
-
-        
          <?php
          require_once('connect.php');
-         
-         $sql = "SELECT FullAddress FROM hotel WHERE hotel_id = $hid";
-         if($result = $mysqli->query($sql)){
-            $hotel_address = $result->fetch_array()[0];
-         
+         $hid = $_GET['HotelID'];
 
-            //  $hotel_address = "ADDRESS PLACEHOLDER";
-                // echo $hotel_name . "<br>";
-                echo $hotel_address . "<br>";
-         }
-         else{
-            echo "Error: " . $sql . "<br>" . $mysqli->error;
-             
-         }
-         
+        $sql = "SELECT HotelName, FullAddress FROM hotel WHERE Hotel_ID = '$hid'";
+        if($result = $mysqli->query($sql)){
+            if($result->num_rows > 0){
+                while($row = $result->fetch_array()){
+                    echo '<h1>'.$row['HotelName'].'</h1>';
+                    echo '<h2>'.$row['FullAddress'].'</h2>';
+                }
+            }
+        }
+
         ?>
 
 
