@@ -135,7 +135,8 @@
         <h1>Reservations</h1>
 
         <?php
-        $r = "select Reservation.Reservation_ID, HotelName, CheckIn_Date, CheckOut_Date FROM Reservation, Room_Reservation, Room, Hotel WHERE Reservation.Reservation_ID = Room_Reservation.Reservation_ID AND Room_Reservation.Room_ID = Room.Room_ID AND Room.Hotel_ID = Hotel.Hotel_ID;";
+        $uid = $_SESSION['User_ID'];
+        $r = "select Reservation.Reservation_ID, HotelName, CheckIn_Date, CheckOut_Date, User_ID FROM Reservation, Room_Reservation, Room, Hotel WHERE Reservation.Reservation_ID = Room_Reservation.Reservation_ID AND Room_Reservation.Room_ID = Room.Room_ID AND Room.Hotel_ID = Hotel.Hotel_ID AND reservation.User_ID = $uid";
         $count = 1;
         if ($result = $mysqli->query($r)) {
             if($result->num_rows > 0){
