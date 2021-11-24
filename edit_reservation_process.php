@@ -20,21 +20,31 @@
     // echo $st;
     // echo "<br>";
     // echo $rrid;
-    $sql = "UPDATE room SET Status = '$st' WHERE room_id = (SELECT room_id FROM room_reservation WHERE RR_ID = $rrid);";
-    if($mysqli->query($sql)){
-        echo "Room Status Updated";
-        $sql = "UPDATE reservation SET status = $res WHERE `Reservation_ID` = $rid";
-        if($mysqli->query($sql)){
-            echo "Reservation Status Updated";
-            header("Location: admin_reservation.php");
+    $sql1 = "SELECT room_id FROM room_reservation WHERE reservation_id = $rid;";
+    if($result = $mysqli->query($sql1)){
+        while($row = $result->fetch_array()){
+            echo $row['room_id'];
+            $id = $row['room_id'];
+            echo $id;
+            $sql = "UPDATE room SET Status = '$st' WHERE room_id = $id;";
+            if($mysqli->query($sql)){
+                echo "Room Status Updated";
+               
+            }
+            else{
+                echo "Error updating record: " . $mysqli->error;
+            }
         }
-        else{
-            echo "Error updating record: " . $mysqli->error;
-        }
+    }
+    $sql2 = "UPDATE reservation SET status = $res WHERE `Reservation_ID` = $rid";
+    if($mysqli->query($sql2)){
+        echo "Reservation Status Updated";
+        header("Location: admin_reservation.php");
     }
     else{
         echo "Error updating record: " . $mysqli->error;
     }
+ 
 
 
 

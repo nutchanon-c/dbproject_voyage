@@ -102,8 +102,18 @@
                                 // echo "Reservation Status Updated";
                                 
                                 // update status of room in room table to be 1 where room_reservation.room_id = room_id and room_reservation.reservation_id = reservation_id
-                                $sql4 = "UPDATE room SET Status = 1 WHERE Room_ID = (SELECT room_id from room_reservation WHERE room_reservation.Reservation_ID = $reservation_id)";
-                                if($mysqli->query($sql4)){
+                                $sql4 = "SELECT room_id from room_reservation WHERE room_reservation.Reservation_ID = $reservation_id";
+                                if($result1 = $mysqli->query($sql4)){
+                                    while($row = $result->fetch_array()){
+                                        $sql5 = "UPDATE room SET Status = 1 WHERE Room_ID = $row";
+                                        if($mysqli->query($sql5)){
+
+                                        }
+                                        else{
+                                            echo "error: ".$mysqli->error;
+                                        }
+
+                                    }
                                     // echo "<br>";
                                     // echo "Room Status Updated";
                                 }
