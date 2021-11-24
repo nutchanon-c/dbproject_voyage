@@ -9,6 +9,9 @@
     if($_POST['Status'] == '1'){
         $st = 1;
     }
+    elseif($_POST['Status'] == '0'){
+        $st = 1;
+    }
     else{
         $st = 0;
     }
