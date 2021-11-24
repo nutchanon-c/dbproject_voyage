@@ -114,11 +114,11 @@
                             }
                             else{
                                 echo "<br>";
-                                echo "Error: ".$mysql->error;
+                                echo "Error: ".$mysqli->error;
                             }
                         }
                         else{
-                            echo "Error: ".$mysql->error;
+                            echo "Error: ".$mysqli->error;
                         }
                     }
                     // if post['payment_method'] == "cash", set status to 0
@@ -179,7 +179,7 @@
 
         }
         else{
-            echo "Error: ".$mysql->error;
+            echo "Error: ".$mysqli->error;
         }
 
 
