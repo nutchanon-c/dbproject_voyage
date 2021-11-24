@@ -1,33 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- use admincss.css -->
     <link rel="stylesheet" href="admincss.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Reservation Information</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        tr {
-            border: 1px solid black;
-        }
-
-        td {
-            border: 1px solid black;
-        }
-    </style>
+    <title>Add Service</title>
 </head>
-
 <body>
-<div class="container">
-<nav class="navbar">
+    <div class="container">
+    <nav class="navbar">
             <!--This is a ApeTech logo section-->
             <div class="navhead">
                 <div class="cir">
@@ -55,46 +40,43 @@
                 </div>
             </div>
         </nav>
-    <main class="infobox">
-    <header class="infoheader">
-                <!--This this the header Display the current information type displayed-->
-                <div class="infoTopic">
-                    <h1>Transaction Information</h1>
-                </div>
-                <!--This this the add information button (In case the page the function to add the information to the database)-->
- 
-            </header>
-    <div class="infoContent">
-    <?php
-
-   
-
-    session_start();
-    require_once('connect.php');
-
-    $sql = "SELECT * FROM transaction;";
-    if ($result = $mysqli->query($sql)) {
-        if ($result->num_rows > 0) {
-
-            // display Reservation_ID, Hotel_ID, HotelName, User_ID, UserName, FirstName, LastName, Room_ID, Room_Type, CheckIn_Date, CheckOut_Date, TotalPrice, Status
-            echo "<table style='border: 1px solid black;'><tr><th>Transaction_ID</th><th>Reservation_ID</th><th>CardInfo_ID</th><th>Transaction Date</th><th>Transaction Time</th><th>Total</th></tr>";
-            while ($row = $result->fetch_assoc()) {
-                $rid = $row['Reservation_ID'];
-                // echo $rid;
-                echo "<tr style='border: 1px solid black;'><td>" . $row["Transaction_ID"] . "</td><td>" . $row["Reservation_ID"] . "</td><td>" . $row["CardInfo_ID"] . "</td><td>" . $row["Transaction_Date"] . "</td><td>" . $row["Transaction_Time"] . "</td><td>" . $row["Total"] ."</tr>";
-            }
-        } else {
-            echo "No records matching your query were found.";
-        }
-    } else {
-        echo "ERROR: Could not able to execute $sql. " . $mysqli->error;
-    }
+        
+        <div class="infoContent">
+        <?php
+        session_start();
+        require_once('connect.php');
+        // create form to type in Service Name and Service Price
+        echo "<form action='admin_addhotel_add_process.php' method='post' style='display: flex; flex-direction: column; justify-content:center; align-items:center;'>";
+        echo "<h2>Add New Hotel</h2>";
+        // form to add HotelName, Tel, PostCode, District, City, Country, FullAddress, Picture, Rating, Email
+        echo "<label for='hotel_name'>Hotel Name:</label>";
+        echo "<input type='text' name='hotel_name' id='hotel_name' required>";
+        echo "<label for='tel'>Tel:</label>";
+        echo "<input type='text' name='tel' id='tel' required>";
+        echo "<label for='postcode'>Postcode:</label>";
+        echo "<input type='text' name='postcode' id='postcode' required>";
+        echo "<label for='district'>District:</label>";
+        echo "<input type='text' name='district' id='district' required>";
+        echo "<label for='city'>City:</label>";
+        echo "<input type='text' name='city' id='city' required>";
+        echo "<label for='country'>Country:</label>";
+        echo "<input type='text' name='country' id='country' required>";
+        echo "<label for='fulladdress'>Full Address:</label>";
+        echo "<input type='text' name='fulladdress' id='fulladdress' required>";
+        echo "<label for='picture'>Picture (file name):</label>";
+        echo "<input type='text' name='picture' id='picture' required>";
+        echo "<label for='email'>Email:</label>";
+        echo "<input type='text' name='email' id='email' required>";
+        echo "<input type='submit' value='Add'>";
+        echo "</form>";
 
 
-    ?>
+
+        
+
+        ?>
+        </div>
     </div>
-    </main>
-</div>
 </body>
-
 </html>
+

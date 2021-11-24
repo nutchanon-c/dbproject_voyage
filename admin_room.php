@@ -61,7 +61,8 @@
                 require_once('connect.php');
                 //The Topic of the page
                 //Query the data from the hotel tables
-                $q = "SELECT * FROM Hotel";
+                $q = "SELECT *, BedType AS bt  FROM room, bedtype WHERE room.BedType_ID = bedtype.BedType_ID ORDER BY hotel_id";
+                
                 if($result = $mysqli->query($q)){
                     while($row = $result->fetch_array()){
 
@@ -69,42 +70,39 @@
                         // new table layout
                         echo "<table>";
                         echo "<tr>";
-                        echo "<th>Hotel Picture</th>";
+                        echo "<th>Room ID</th>";
                         echo "<th>Hotel ID</th>";
-                        echo "<th>Hotel Name</th>";
-                        echo "<th>Address</th>";
-                        echo "<th>District</th>";
-                        echo "<th>City</th>";
-                        echo "<th>Country</th>";
-                        echo "<th>PostCode</th>";
-                        echo "<th>Tel</th>";
-                        echo "<th>Email</th>";
+                        echo "<th>Room Type</th>";
+                        echo "<th>Room Description</th>";
+                        echo "<th>Status</th>";
+                        echo "<th>Bed Amount</th>";
+                        echo "<th>Bed Type</th>";
+                        echo "<th>Size</th>";
+                        echo "<th>Price</th>";
                         // add edit and delete button
                         echo "<th></th>";
                         // echo "<th></th>";
                         echo "</tr>";
                         while($row = $result->fetch_array()){
                             echo "<tr>";
-                            echo "<td><img src='./assets/hotels/".$row['Picture']."'></td>";
-                            echo "<td>" . $row['hotel_id'] . "</td>";
-                            echo "<td>" . $row['HotelName'] . "</td>";
-                            echo "<td>" . $row['FullAddress'] . "</td>";
-                            echo "<td>" . $row['District'] . "</td>";
-                            echo "<td>" . $row['City'] . "</td>";
-                            echo "<td>" . $row['Country'] . "</td>";
-                            echo "<td>" . $row['PostCode'] . "</td>";
-                            echo "<td>" . $row['Tel'] . "</td>";
-                            echo "<td>" . $row['Email'] . "</td>";
+                            echo "<td>" . $row['room_id'] . "</td>";
+                            echo "<td>" . $row['Hotel_ID'] . "</td>";
+                            echo "<td>" . $row['Room_Type'] . "</td>";
+                            echo "<td>" . $row['Room_Desc'] . "</td>";
+                            echo "<td>" . $row['Status'] . "</td>";
+                            echo "<td>" . $row['BedAmt'] . "</td>";
+                            echo "<td>" . $row['bt'] . "</td>";
+                            echo "<td>" . $row['Size'] . "</td>";
+                            echo "<td>" . $row['Price'] . "</td>";
                             
                             // add edit and delete button
-                            echo "<td><a href='hotel_edit.php?HotelID=".$row['hotel_id']."'><button>Edit</button></a></td>";
-                            // echo "<td><a href='admin_addser_delete.php?AS_ID=".$row['AS_ID']."'><button>Delete</button></a></td>";
+                            echo "<td><a href='room_edit.php?RoomID=".$row['room_id']."'><button>Edit</button></a></td>";
                             echo "</tr>";
                         }
                         echo "</table>";
                         
                         // "Add New Hotel" button links to add_hotel.php
-                        echo "<a href='add_hotel.php'><button>Add New Hotel</button></a>";
+                        echo "<a href='add_room.php'><button>Add New Room</button></a>";
 
 
                         

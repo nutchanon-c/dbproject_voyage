@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="admincss.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Edit Service</title>
+    <title>Edit Hotel Information</title>
 </head>
 <body>
+        
     <div class="container">
     <nav class="navbar">
             <!--This is a ApeTech logo section-->
@@ -45,38 +46,48 @@
         <?php
         session_start();
         require_once('connect.php');
-        $asid = $_GET['AS_ID'];
-        $sql = "SELECT * FROM additional_service WHERE AS_ID = '$asid'";
-        $result = $mysqli->query($sql);
-        $row = $result->fetch_array();
 
-        echo "<form action='admin_addser_edit_done.php' method='POST'>";
-        // hidden input AS_ID
-        echo "<input type='hidden' name='AS_ID' value='$asid'>";
+        // make text fields to edit information of HotelName, Tel, PostCode, District, City, Country, FullAddress, Picture, Email
+        $sql = "SELECT * FROM room WHERE room_id = '".$_GET['RoomID']."'";
+        $result = $mysqli->query($sql);
+        $row = $result->fetch_assoc();
+        echo "Edit Room Information for Room ID: ".$_GET['RoomID'];
+        echo "<form action='room_edit_finish.php' method='post'>";
         echo "<table>";
-        echo "<tr>";
-        echo "<td>Service ID: </td>";
-        echo "<td><input type='text' name='AS_ID' value='".$row['AS_ID']."' disabled></td>";
-        echo "</tr>";
-        echo "<tr>";
-        echo "<td>Service Name: </td>";
-        echo "<td><input type='text' name='AS_Name' value='".$row['Type']."'></td>";
-        echo "</tr>";
-        echo "<tr>";
-        echo "<td>Service Price: </td>";
-        echo "<td><input type='text' name='AS_Price' value='".$row['Price']."'></td>";
-        echo "</tr>";
-        echo "<tr>";
-        echo "<td><input type='submit' value='Submit'></td>";
-        echo "</tr>";
+        // hidden field to pass HotelID
+        echo "<input type='hidden' name='RoomID' value='".$_GET['RoomID']."'>";
+        echo "<tr><td>Hotel ID:</td><td><input type='text' name='Hotel ID' value='".$row['Hotel_ID']."'></td></tr>";
+        echo "<tr><td>Room Type:</td><td><input type='text' name='Room_Type' value='".$row['Room_Type']."'></td></tr>";
+        echo "<tr><td>Room Description:</td><td><input type='text' name='Room_Desc' value='".$row['Room_Desc']."'></td></tr>";
+        echo "<tr><td>Status:</td><td><input type='number' name='Status' value='".$row['Status']."'></td></tr>";
+        echo "<tr><td>Bed Amount:</td><td><input type='number' name='BedAmt' value='".$row['BedAmt']."'></td></tr>";
+        echo "<tr><td>BedType ID:</td><td><input type='number' name='BedType_ID' value='".$row['BedType_ID']."'></td></tr>";
+        echo "<tr><td>Size:</td><td><input type='number' name='Size' value='".$row['Size']."'></td></tr>";
+        echo "<tr><td>Price:</td><td><input type='text' name='Price' value='".$row['Price']."'></td></tr>";
+        echo "<tr><td><input type='submit' value='Edit'></td></tr>";
         echo "</table>";
         echo "</form>";
 
+        $sql1 = "SELECT * from BedType;";
+        if($result1 = $mysqli->query($sql1)){
+           echo "<table>";
+           echo "<tr><td>BedType ID</td><td>BedType</td></tr>";
+            while($row = $result1->fetch_array()){
+                
+                // display BedType_ID and BedType
+                echo "<tr><td>".$row['BedType_ID']."</td><td>".$row['BedType']."</td></tr>";
+                
+            }
+           echo "</table>";
+        }
+        else{
+            echo "Error: ".$mysqli->error;
+        }
         
+
 
         ?>
         </div>
     </div>
 </body>
 </html>
-

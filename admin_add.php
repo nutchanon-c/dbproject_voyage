@@ -25,7 +25,7 @@
 </head>
 <body>
     <div class="container">
-<nav class="navbar">
+    <nav class="navbar">
             <!--This is a ApeTech logo section-->
             <div class="navhead">
                 <div class="cir">
@@ -39,6 +39,7 @@
                 <list class="Llink">
                     <ul class="Plink">
                         <li class="bullet"><a href="admin_hotel.php">Hotel Information</a></li>
+                        <li class="bullet"><a href="admin_room.php">Room Information</a></li>
                         <li class="bullet"><a href='admin_userinfo.php'>User Information</a></li>
                         <li class="bullet"><a href='admin_reservation.php'>Reservation Information</a></li>
                         <li class="bullet"><a href='admin_transaction.php'>Transaction Information</a></li>

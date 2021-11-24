@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,26 +7,12 @@
     <link rel="stylesheet" href="admincss.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Reservation Information</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        tr {
-            border: 1px solid black;
-        }
-
-        td {
-            border: 1px solid black;
-        }
-    </style>
+    <title>Edit Hotel Information</title>
 </head>
-
 <body>
-<div class="container">
-<nav class="navbar">
+        
+    <div class="container">
+    <nav class="navbar">
             <!--This is a ApeTech logo section-->
             <div class="navhead">
                 <div class="cir">
@@ -55,46 +40,52 @@
                 </div>
             </div>
         </nav>
-    <main class="infobox">
-    <header class="infoheader">
-                <!--This this the header Display the current information type displayed-->
-                <div class="infoTopic">
-                    <h1>Transaction Information</h1>
-                </div>
-                <!--This this the add information button (In case the page the function to add the information to the database)-->
- 
-            </header>
-    <div class="infoContent">
-    <?php
+        <div class="infoContent">
+        <header class="infoheader">
+        </header>
+        <?php
+        session_start();
+        require_once('connect.php');
+
+        // make text fields to edit information of HotelName, Tel, PostCode, District, City, Country, FullAddress, Picture, Email
 
    
+        echo "<form action='room_add_finish.php' method='post'>";
+        echo "<table>";
+        // hidden field to pass HotelID
+        echo "<input type='hidden' name='RoomID' value=''>";
+        echo "<tr><td>Hotel ID:</td><td><input type='text' name='Hotel ID' value=''></td></tr>";
+        echo "<tr><td>Room Type:</td><td><input type='text' name='Room_Type' value=''></td></tr>";
+        echo "<tr><td>Room Description:</td><td><input type='text' name='Room_Desc' value=''></td></tr>";
+        echo "<tr><td>Status:</td><td><input type='number' name='Status' value=''></td></tr>";
+        echo "<tr><td>Bed Amount:</td><td><input type='number' name='BedAmt' value=''></td></tr>";
+        echo "<tr><td>BedType ID:</td><td><input type='number' name='BedType_ID' value=''></td></tr>";
+        echo "<tr><td>Size:</td><td><input type='number' name='Size' value=''></td></tr>";
+        echo "<tr><td>Price:</td><td><input type='text' name='Price' value=''></td></tr>";
+        echo "<tr><td><input type='submit' value='Add'></td></tr>";
+        echo "</table>";
+        echo "</form>";
 
-    session_start();
-    require_once('connect.php');
-
-    $sql = "SELECT * FROM transaction;";
-    if ($result = $mysqli->query($sql)) {
-        if ($result->num_rows > 0) {
-
-            // display Reservation_ID, Hotel_ID, HotelName, User_ID, UserName, FirstName, LastName, Room_ID, Room_Type, CheckIn_Date, CheckOut_Date, TotalPrice, Status
-            echo "<table style='border: 1px solid black;'><tr><th>Transaction_ID</th><th>Reservation_ID</th><th>CardInfo_ID</th><th>Transaction Date</th><th>Transaction Time</th><th>Total</th></tr>";
-            while ($row = $result->fetch_assoc()) {
-                $rid = $row['Reservation_ID'];
-                // echo $rid;
-                echo "<tr style='border: 1px solid black;'><td>" . $row["Transaction_ID"] . "</td><td>" . $row["Reservation_ID"] . "</td><td>" . $row["CardInfo_ID"] . "</td><td>" . $row["Transaction_Date"] . "</td><td>" . $row["Transaction_Time"] . "</td><td>" . $row["Total"] ."</tr>";
+        $sql1 = "SELECT * from BedType;";
+        if($result1 = $mysqli->query($sql1)){
+           echo "<table>";
+           echo "<tr><td>BedType ID</td><td>BedType</td></tr>";
+            while($row = $result1->fetch_array()){
+                
+                // display BedType_ID and BedType
+                echo "<tr><td>".$row['BedType_ID']."</td><td>".$row['BedType']."</td></tr>";
+                
             }
-        } else {
-            echo "No records matching your query were found.";
+           echo "</table>";
         }
-    } else {
-        echo "ERROR: Could not able to execute $sql. " . $mysqli->error;
-    }
+        else{
+            echo "Error: ".$mysqli->error;
+        }
+        
 
 
-    ?>
+        ?>
+        </div>
     </div>
-    </main>
-</div>
 </body>
-
 </html>
