@@ -177,8 +177,26 @@
         <!-- label for payment_method -->
         <label for="payment_method">Payment Method:</label>
         <form action="reservation_confirmation.php?signin=69" method="post">
-            <input type="radio" name="payment_method" value="credit_card" checked>Credit Card<br>
-            <input type="radio" name="payment_method" value="cash">Cash<br>
+            <?php
+            $user_id = $_SESSION['User_ID'];
+            $sql1 = "SELECT COUNT(*) FROM cardinfo WHERE User_ID = $user_id";
+            if($result = $mysqli->query($sql1)){
+                $c = $result -> fetch_array();
+                
+                if($c['COUNT(*)'] == 0){
+                    echo '<input type="radio" name="payment_method" value="credit_card" disabled>Credit Card (No cards registered)<br>';
+                }
+                else{
+                    
+                    echo '<input type="radio" name="payment_method" value="credit_card" checked>Credit Card<br>';
+                }
+
+            }
+
+
+            ?>
+            
+            <input type="radio" name="payment_method" value="cash" required>Cash<br>
             <input type="submit" value="Confirm Reservation" name="confirm">
         </div>
     </form>

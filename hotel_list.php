@@ -126,6 +126,7 @@
 
                     if(isset($_GET['signin'])){
                         echo '<form name="search_form" action="hotel_list.php?signin=69" method="GET">';
+                        echo '<input type="hidden" name="signin" value="69">';
                     }
                     else{
                         echo '<form name="search_form" action="hotel_list.php" method="GET">';

@@ -145,6 +145,9 @@
                     // }
                 }
             }
+            else{
+                header("location: add_card.php?signin=69");
+            }
 
             $sql = "SELECT *, Reservation.Status FROM reservation, room_reservation, room, hotel WHERE room_reservation.reservation_id = $reservationid AND room.room_ID = room_reservation.room_ID and room.Hotel_ID = hotel.Hotel_ID AND reservation.reservation_id = $reservationid";
 
