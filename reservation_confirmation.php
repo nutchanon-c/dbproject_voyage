@@ -50,7 +50,7 @@
         <?php
         // session_start();
         require_once('connect.php');
-
+        // echo $_POST['payment_method'];
         // echo $_SESSION['User_ID'];
         $reservationid = $_SESSION['Reservation_ID'];
         // echo $reservationid;
@@ -62,7 +62,7 @@
         if($result = $mysqli->query($sql)){
             if($result->num_rows > 0){
 
-                $row = $result->fetch_array();
+                while($row = $result->fetch_array()){
                 $hotelname = $row['HotelName'];
                 $room_type = $row['Room_Type'];
                 $checkin = $row['CheckIn_Date'];
@@ -76,13 +76,59 @@
                 $user_id = $_SESSION['User_ID'];    
                 $rstatus = $row['Status'];      
                 $_SESSION['Hotel_ID'] = $hotel_id;
-                
+                }
 
             } else{
                 echo "No records matching your query were found.";
             }
 
+            
             $totalPrice = $_SESSION['totalPrice'];
+
+
+
+
+            if($_POST['payment_method'] == 'credit_card'){
+                $sql1 = "SELECT cardinfo_id FROM cardinfo WHERE User_ID = $user_id";        
+                if($result = $mysqli->query($sql1)){                  
+                        while($row = $result->fetch_array()){
+                        $cardinfo_id = $row['cardinfo_id'];
+                    }
+                        
+                        
+                            $sql2 = "INSERT INTO transaction (Reservation_ID, CardInfo_ID, Transaction_Date, Transaction_Time, Total) VALUES ($reservation_id, $cardinfo_id, CURDATE(), CURTIME(), $totalPrice)";
+                            if($mysqli->query($sql2)){
+                                
+                                // update Status of reservation table to be 1 where reservation_id = reservation_id
+                                $sql3 = "UPDATE reservation SET Status = 1 WHERE Reservation_ID = $reservation_id";
+                                if($mysqli->query($sql3)){
+                                    
+                                    // update status of room in room table to be 1 where room_reservation.room_id = room_id and room_reservation.reservation_id = reservation_id
+                                    $sql4 = "UPDATE room SET Status = 1 WHERE Room_ID = (SELECT room_id from room_reservation WHERE room_reservation.Reservation_ID = $reservation_id)";
+                                    if($mysqli->query($sql4)){
+    
+                                    }
+                                    else{
+                                        echo "Fourth Error updating record: " . $mysqli->error;
+                                    }
+    
+                                }
+                                else{
+                                    echo "<br>";
+                                    echo "Third Error: ".$mysqli->error;
+                                }
+                            }
+                            else{
+                                echo "Second Error: ".$mysqli->error;
+                            }
+                        
+                    
+                }
+                else{
+                    echo "First Error: ".$mysqli->error;
+                }
+            }
+
             // if post = credit_card, insert into transaction table the values of reservation_id, cardinfo_id, current date, current time, total price
             // get the cardinfo_id from the cardinfo table where cardinfo.user_id = user_id
             $sql1 = "SELECT cardinfo_id FROM cardinfo WHERE User_ID = $user_id";        
@@ -93,20 +139,15 @@
                     if($_POST['payment_method'] == "credit_card"){
                         $sql2 = "INSERT INTO transaction (Reservation_ID, CardInfo_ID, Transaction_Date, Transaction_Time, Total) VALUES ($reservation_id, $cardinfo_id, CURDATE(), CURTIME(), $totalPrice)";
                         if($mysqli->query($sql2)){
-                            // echo "<br>";
-                            // echo "Transaction Successful";
                             
                             // update Status of reservation table to be 1 where reservation_id = reservation_id
                             $sql3 = "UPDATE reservation SET Status = 1 WHERE Reservation_ID = $reservation_id";
                             if($mysqli->query($sql3)){
-                                // echo "<br>";
-                                // echo "Reservation Status Updated";
                                 
                                 // update status of room in room table to be 1 where room_reservation.room_id = room_id and room_reservation.reservation_id = reservation_id
                                 $sql4 = "UPDATE room SET Status = 1 WHERE Room_ID = (SELECT room_id from room_reservation WHERE room_reservation.Reservation_ID = $reservation_id)";
                                 if($mysqli->query($sql4)){
-                                    // echo "<br>";
-                                    // echo "Room Status Updated";
+
                                 }
                                 else{
                                     echo "Error updating record: " . $mysqli->error;
@@ -122,18 +163,6 @@
                             echo "Error: ".$mysql->error;
                         }
                     }
-                    // if post['payment_method'] == "cash", set status to 0
-                    // else{
-                    //     $sql4 = "UPDATE reservation SET Status = 0 WHERE Reservation_ID = $reservation_id";
-                    //     if($mysqli->query($sql4)){
-                    //         echo "<br>";
-                    //         echo "Reservation Status Updated";
-                    //     }
-                    //     else{
-                    //         echo "<br>";
-                    //         echo "Error: ".$mysql->error;
-                    //     }
-                    // }
                 }
             }
 

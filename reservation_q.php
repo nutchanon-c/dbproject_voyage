@@ -20,11 +20,9 @@
         $q2 = "SELECT Reservation_ID from reservation WHERE User_ID='$uid' AND CheckIn_Date = '$ci' AND CheckOut_Date = '$co' AND CustomerAmount = $gn";
         if($reserID = $mysqli->query($q2)){
             $rid = $reserID->fetch_array();
-                // $reserID = $rid['Reservation_ID'];
             $_SESSION['Reservation_ID'] = $rid[0];
             var_dump($rid[0]);
-            // echo $rid;
-            // $_SESSION['Reservation_ID'] = $rid;
+
         }
         else{
             echo "query failed:".$mysqli->error;
@@ -34,9 +32,6 @@
             while($row = $roomArray->fetch_assoc()){
                 $_SESSION['Room_Type'] = $row['Room_Type'];
                 $reserID = $_SESSION['Reservation_ID'];
-                // var_dump($reserID);
-                // echo '<br>';
-                // var_dump($row);
                 $roomID = $row['Room_ID'];
                 $r2 = "INSERT INTO room_reservation values ('', $reserID, $roomID)";
                 if($result = $mysqli->query($r2)){
@@ -46,15 +41,14 @@
                     echo "query failed:".$mysqli->error;
                 }
 
+                $r3 = "UPDATE room SET Status = 1 WHERE Room_ID = $roomID";
+                if($result = $mysqli->query($r3)){
+                    echo "ROOM RESERVED";
+                }
+                else{
+                    echo "query failed:".$mysqli->error;
+                }
 
-                // SET THE ROOM STATUS TO 1
-                // $setroomStatus = "UPDATE room SET Status = 1 WHERE Room_ID = $roomID";
-                // if($result = $mysqli->query($setroomStatus)){
-                //     echo "ROOM RESERVED";
-                // }
-                // else{
-                //     echo "query failed:".$mysqli->error;
-                // }
             }
         }
         
