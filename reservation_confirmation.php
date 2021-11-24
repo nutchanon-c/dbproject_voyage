@@ -61,7 +61,6 @@
         
         if($result = $mysqli->query($sql)){
             if($result->num_rows > 0){
-
                 while($row = $result->fetch_array()){
                 $hotelname = $row['HotelName'];
                 $room_type = $row['Room_Type'];
@@ -209,7 +208,7 @@
 
         }
         else{
-            echo "Error: ".$mysql->error;
+            echo "Error: ".$mysqli->error;
         }
 
 
