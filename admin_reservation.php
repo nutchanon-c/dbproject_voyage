@@ -58,7 +58,7 @@
     session_start();
     require_once('connect.php');
 
-    $sql = "SELECT *, r.status AS resStatus FROM user u, reservation r, room_reservation rr, room rm, hotel h WHERE r.reservation_id = rr.reservation_id AND rr.room_id = rm.room_id AND rm.hotel_id = h.hotel_id;";
+    $sql = "SELECT *, r.status AS resStatus FROM user u, reservation r, room_reservation rr, room rm, hotel h WHERE r.reservation_id = rr.reservation_id AND rr.room_id = rm.room_id AND rm.hotel_id = h.hotel_id AND r.user_id = u.user_id;";
     if ($result = $mysqli->query($sql)) {
         if ($result->num_rows > 0) {
 
