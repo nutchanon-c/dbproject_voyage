@@ -74,7 +74,7 @@
 
     <?php
 
-    echo "<hr><h2>All Reservation Information</h2>";
+    // echo "<hr><h2>All Reservation Information</h2>";
 
     session_start();
     require_once('connect.php');

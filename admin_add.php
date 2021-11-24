@@ -8,6 +8,20 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Add Admin</title>
+    <style>
+        input[type='text']{
+            height: 2em;
+        }
+        input[type='password']{
+            height: 2em;
+        }
+        input[type='email']{
+            height: 2em;
+        }
+        select{
+            height: 2em;
+        }
+        </style>
 </head>
 <body>
     <div class="container">
@@ -38,37 +52,31 @@
                 </div>
             </div>
         </nav>
-<form action="admin_add_process.php" method="post">
-            <div class="form_title">
-                <h1>Register</h1>
-            </div>
-            <div class="form_input">
+        <div class="infoContent" >
+        <header class="infoheader">
+        </header>
+            <form action="admin_add_process.php" method="post" style="display: flex; flex-direction: column; margin: 2em; width: 50%;">
+            
+                <h1>Add Admin</h1>
+                <br>
                 <input type="text" name="username" placeholder="Username" required>
-            </div>
-            <div class="form_input">
+                <br>
                 <input type="password" name="password" placeholder="Password" required>
-            </div>
-            <div class="form_input">
+                <br>
                 <input type="email" name="email" placeholder="Email" required>
-            </div>
-            <div class="form_input">
+                <br>
                 <input type="text" name="firstname" placeholder="First name" required>
-            </div>
-            <div class="form_input">
+                <br>
                 <input type="text" name="lastname" placeholder="Last name" required>
-            </div>
-            <div class="form_input">
+                <br>
                 <input placeholder="Date of Birth" class="textbox-n" type="text" name="dob" onfocus="(this.type='date')" id="date" required>
-            </div>
-            <div class="form_input">
+                <br>
                 <input type="text" name="address" placeholder="Address" required>
-            </div>
-            <div class="form_input">
+                <br>
                 <input type="text" name="tel" placeholder="Tel" required>
-            </div>
+                <br>
 
             <!-- add gender selection -->
-            <div class="form_input" >
             <label for="gender"> Select you gender</label>
             <select name="gender" required>
                 <option value="none" selected disabled>Gender</option>
@@ -76,16 +84,16 @@
                 <option value="Female">Female</option>
                 <option value="Other">Other</option>
             </select>
-            </div>    
             
 
+            <br>
 
-
-            <div class="form_input">
                 <input type="submit" name="submit" value="Register">
-            </div>
+           
         </form>
-    </div>
+        </div>
+        </div>
+ 
 </body>
 </html>
 

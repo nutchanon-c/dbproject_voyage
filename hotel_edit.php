@@ -10,6 +10,7 @@
     <title>Edit Hotel Information</title>
 </head>
 <body>
+        
     <div class="container">
 <nav class="navbar">
             <!--This is a ApeTech logo section-->
@@ -38,6 +39,9 @@
                 </div>
             </div>
         </nav>
+        <div class="infoContent">
+        <header class="infoheader">
+        </header>
         <?php
         session_start();
         require_once('connect.php');
@@ -68,6 +72,7 @@
 
 
         ?>
+        </div>
     </div>
 </body>
 </html>

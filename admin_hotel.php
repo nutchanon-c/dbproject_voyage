@@ -48,6 +48,7 @@
                 </div>
             </div>
         </nav>
+        
         <main class="infobox">
         <div class="infoTopic">
                     <h1>Hotel Information</h1>

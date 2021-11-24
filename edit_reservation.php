@@ -38,7 +38,11 @@
                 </div>
             </div>
         </nav>
+
         <div class="infoContent">
+
+        <header class="infoheader">
+        </header>
         <?php
             session_start();
             require_once('connect.php');
