@@ -21,32 +21,43 @@
 </head>
 <body>
     <div class="container">
-    <nav class='navbar'>
-            <!-- link to Admin Home Page -->
-            <a href='admin_home.php' class='navbar-brand'>Admin Home</a>
-            <list>
-                <ul>
-                    <li><a href='admin_hotel.php'>Hotel Information</a></li>
-                    <li><a href='admin_userinfo.php'>User Information</a></li>
-                    <li><a href='admin_reservation.php'>Reservation Information</a></li>
-                    <li><a href='admin_transaction.php'>Transaction Information</a></li>
-                    <li><a href='admin_comment.php'>User Comment</a></li>
-                    <li><a href='admin_addser.php'>Additional Service</a></li>
-                    <li><a href='admin_Staff.php'>Staff Information</a></li>
-                    
-                </ul>
-            </list>
-            <!-- logout button to go back to home.php -->
-            <a href='logout.php' class='navbar-brand'>Logout</a>
-            <hr>
+    <nav class="navbar">
+            <!--This is a ApeTech logo section-->
+            <div class="navhead">
+                <div class="cir">
+                    <!--This is the circle around the logo-->
+                    <img src="./assets/logo.png" alt="ApeTech">
+                    <!--This is the ApeTech logo itself-->
+                </div>
+            </div>
+            <!--This is a nav hyperlink list section-->
+            <div class="navmenu">
+                <list class="Llink">
+                    <ul class="Plink">
+                        <li class="bullet"><a href="admin_hotel.php">Hotel Information</a></li>
+                        <li class="bullet"><a href='admin_userinfo.php'>User Information</a></li>
+                        <li class="bullet"><a href='admin_reservation.php'>Reservation Information</a></li>
+                        <li class="bullet"><a href='admin_transaction.php'>Transaction Information</a></li>
+                        <li class="bullet"><a href='admin_comment.php'>User Comment</a></li>
+                        <li class="bullet"><a href='admin_addser.php'>Additional Service</a></li>
+                        <li class="bullet"><a href='admin_Staff.php'>Staff Information</a></li>
+                    </ul>
+                </list>
+                <div class="navfooter">
+                    <a href="logout.php" class="signout">Signout</a>
+                </div>
+            </div>
         </nav>
-        <main>
+        <main class="infobox">
+        <div class="infoTopic">
+                    <h1>Hotel Information</h1>
+                </div>
+            <div class="infoContent">
             <?php 
                 //Start session and Connect to the database
                 session_start();
                 require_once('connect.php');
                 //The Topic of the page
-                echo "<h1>Hotel Information</h1>";
                 //Query the data from the hotel tables
                 $q = "SELECT * FROM Hotel";
                 if($result = $mysqli->query($q)){
@@ -100,6 +111,7 @@
                 }
 
             ?>
+            </div>
         </main>
     </div>
 </body>

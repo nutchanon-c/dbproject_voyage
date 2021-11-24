@@ -26,26 +26,44 @@
 </head>
 
 <body>
-<nav class='navbar'>
-            <!-- link to Admin Home Page -->
-            <a href='admin_home.php' class='navbar-brand'>Admin Home</a>
-            <list>
-                <ul>
-                    <li><a href='admin_hotel.php'>Hotel Information</a></li>
-                    <li><a href='admin_userinfo.php'>User Information</a></li>
-                    <li><a href='admin_reservation.php'>Reservation Information</a></li>
-                    <li><a href='admin_transaction.php'>Transaction Information</a></li>
-                    <li><a href='admin_comment.php'>User Comment</a></li>
-                    <li><a href='admin_addser.php'>Additional Service</a></li>
-                    <li><a href='admin_Staff.php'>Staff Information</a></li>
-                    
-                </ul>
-            </list>
-            <!-- logout button to go back to home.php -->
-            <a href='logout.php' class='navbar-brand'>Logout</a>
-            <hr>
+    <div class="container">
+    <nav class="navbar">
+            <!--This is a ApeTech logo section-->
+            <div class="navhead">
+                <div class="cir">
+                    <!--This is the circle around the logo-->
+                    <img src="./assets/logo.png" alt="ApeTech">
+                    <!--This is the ApeTech logo itself-->
+                </div>
+            </div>
+            <!--This is a nav hyperlink list section-->
+            <div class="navmenu">
+                <list class="Llink">
+                    <ul class="Plink">
+                        <li class="bullet"><a href="admin_hotel.php">Hotel Information</a></li>
+                        <li class="bullet"><a href='admin_userinfo.php'>User Information</a></li>
+                        <li class="bullet"><a href='admin_reservation.php'>Reservation Information</a></li>
+                        <li class="bullet"><a href='admin_transaction.php'>Transaction Information</a></li>
+                        <li class="bullet"><a href='admin_comment.php'>User Comment</a></li>
+                        <li class="bullet"><a href='admin_addser.php'>Additional Service</a></li>
+                        <li class="bullet"><a href='admin_Staff.php'>Staff Information</a></li>
+                    </ul>
+                </list>
+                <div class="navfooter">
+                    <a href="logout.php" class="signout">Signout</a>
+                </div>
+            </div>
         </nav>
-    
+    <main class="infobox">
+    <header class="infoheader">
+                <!--This this the header Display the current information type displayed-->
+                <div class="infoTopic">
+                    <h1>Reservation Information</h1>
+                </div>
+                <!--This this the add information button (In case the page the function to add the information to the database)-->
+ 
+            </header>
+    <div class="infoContent">
     <ul>
             <label>Status: </label>
             <li>0: Pending</li>
@@ -53,6 +71,7 @@
             <li>2: Finished</li>
             <li>3: Cancelled</li>
         </ul>
+
     <?php
 
     echo "<hr><h2>All Reservation Information</h2>";
@@ -80,6 +99,9 @@
 
 
     ?>
+    </div>
+    </main>
+    </div>
 </body>
 
 </html>
