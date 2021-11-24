@@ -60,16 +60,16 @@
     session_start();
     require_once('connect.php');
 
-    $sql = "SELECT *, r.status AS resStatus FROM user u, reservation r, room_reservation rr, room rm, hotel h WHERE r.reservation_id = rr.reservation_id AND rr.room_id = rm.room_id AND rm.hotel_id = h.hotel_id AND r.user_id = u.user_id ORDER BY r.reservation_id;";
+    $sql = "SELECT * FROM transaction;";
     if ($result = $mysqli->query($sql)) {
         if ($result->num_rows > 0) {
 
             // display Reservation_ID, Hotel_ID, HotelName, User_ID, UserName, FirstName, LastName, Room_ID, Room_Type, CheckIn_Date, CheckOut_Date, TotalPrice, Status
-            echo "<table style='border: 1px solid black;'><tr><th>Reservation_ID</th><th>Hotel_ID</th><th>HotelName</th><th>User_ID</th><th>UserName</th><th>FirstName</th><th>LastName</th><th>Room_ID</th><th>Room_Type</th><th>CheckIn_Date</th><th>CheckOut_Date</th><th>TotalPrice</th><th>Status</th></tr>";
+            echo "<table style='border: 1px solid black;'><tr><th>Transaction_ID</th><th>Reservation_ID</th><th>CardInfo_ID</th><th>Transaction Date</th><th>Transaction Time</th><th>Total</th></tr>";
             while ($row = $result->fetch_assoc()) {
                 $rid = $row['Reservation_ID'];
                 // echo $rid;
-                echo "<tr style='border: 1px solid black;'><td>" . $row["Reservation_ID"] . "</td><td>" . $row["hotel_id"] . "</td><td>" . $row["HotelName"] . "</td><td>" . $row["User_ID"] . "</td><td>" . $row["Username"] . "</td><td>" . $row["FirstName"] . "</td><td>" . $row["LastName"] . "</td><td>" . $row["room_id"] . "</td><td>" . $row["Room_Type"] . "</td><td>" . $row["CheckIn_Date"] . "</td><td>" . $row["CheckOut_Date"] . "</td><td>" . $row["TotalPrice"] . "</td><td>" . $row["resStatus"] . "</td><td><a href='edit_reservation.php?ReservationID=" . $rid . "'>Edit</a></td></tr>";
+                echo "<tr style='border: 1px solid black;'><td>" . $row["Transaction_ID"] . "</td><td>" . $row["Reservation_ID"] . "</td><td>" . $row["CardInfo_ID"] . "</td><td>" . $row["Transaction_Date"] . "</td><td>" . $row["Transaction_Time"] . "</td><td>" . $row["Total"] ."</tr>";
             }
         } else {
             echo "No records matching your query were found.";

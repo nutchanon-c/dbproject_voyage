@@ -29,9 +29,11 @@
                     <li><a href='admin_hotel.php'>Hotel Information</a></li>
                     <li><a href='admin_userinfo.php'>User Information</a></li>
                     <li><a href='admin_reservation.php'>Reservation Information</a></li>
+                    <li><a href='admin_transaction.php'>Transaction Information</a></li>
                     <li><a href='admin_comment.php'>User Comment</a></li>
                     <li><a href='admin_addser.php'>Additional Service</a></li>
                     <li><a href='admin_Staff.php'>Staff Information</a></li>
+                    
                 </ul>
             </list>
             <!-- logout button to go back to home.php -->
