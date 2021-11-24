@@ -56,8 +56,7 @@
         // echo $reservationid;
 
         // select * from reservation, room_reservaion, room, hotel where room_reservation.reservation_id = reservation.reservation_id AND room.room_ID = room_reservation.room_ID and room.Hotel_ID = hotel.Hotel_ID;
-        //$sql = "SELECT *, Reservation.Status FROM reservation, room_reservation, room, hotel WHERE room_reservation.reservation_id = $reservationid AND room.room_ID = room_reservation.room_ID and room.Hotel_ID = hotel.Hotel_ID AND reservation.reservation_id = $reservationid";
-        $sql = "call reservation_confirmation_query($reservationid);";
+        $sql = "SELECT *, Reservation.Status FROM reservation, room_reservation, room, hotel WHERE room_reservation.reservation_id = $reservationid AND room.room_ID = room_reservation.room_ID and room.Hotel_ID = hotel.Hotel_ID AND reservation.reservation_id = $reservationid";
 
         if($result = $mysqli->query($sql)){
             if($result->num_rows > 0){
@@ -115,11 +114,11 @@
                             }
                             else{
                                 echo "<br>";
-                                echo "Error: ".$mysqli->error;
+                                echo "Error: ".$mysql->error;
                             }
                         }
                         else{
-                            echo "Error: ".$mysqli->error;
+                            echo "Error: ".$mysql->error;
                         }
                     }
                     // if post['payment_method'] == "cash", set status to 0
@@ -180,7 +179,7 @@
 
         }
         else{
-            echo "Error: ".$mysqli->error;
+            echo "Error: ".$mysql->error;
         }
 
 
